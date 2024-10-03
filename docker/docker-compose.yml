@@ -17,7 +17,10 @@ services:
       - '8080:8080'
     networks:
       - jenkins
+    dns:
+      - 8.8.8.8
     restart: on-failure
+
   alpine-slave:
     image: alpine/socat
     container_name: alpine-slave
@@ -31,6 +34,7 @@ services:
       - 2375
     networks:
       - jenkins
+   
 
 volumes:
   jenkins-data:
