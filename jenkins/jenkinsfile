@@ -2,38 +2,39 @@ pipeline {
     agent { 
         node {
             label 'jenkins_slave'
-            }
-      }
+        }
+    }
     triggers {
-        pollSCM '* /5 * * *'
+        pollSCM('* /5 * * *')
     }
+    environment {
+        IMAGE_NAME = 'webserver' 
+        KUBE_DEPLOYMENT = 'nginx-deployment'
+        KUBE_NAMESPACE = 'default'
+
     stages {
-        stage('Build') {
+        stage('Build Docker Image') {
             steps {
-                echo "Building.."
-                sh '''
-                cd myapp
-                pip install -r requirements.txt
-                '''
+                echo "Building Docker image.."
+                script {
+                    sh '''
+                    cd docker/nginx
+                    docker build -t $IMAGE_NAME .
+                    '''
+                }
             }
         }
-        stage('Test') {
+        stage('Deploy to Kubernetes') {
             steps {
-                echo "Testing.."
-                sh '''
-                cd myapp
-                python3 hello.py
-                python3 hello.py --name=Brad
-                '''
-            }
-        }
-        stage('Deliver') {
-            steps {
-                echo 'Deliver....'
-                sh '''
-                echo "doing delivery stuff.."
-                '''
+                echo 'Deploying to Kubernetes...'
+                script {
+                    sh '''
+                    kubectl apply -f kubernetes/deployment/nginx-deployment.yml
+                    '''
+                }
             }
         }
     }
+}
+
 }
