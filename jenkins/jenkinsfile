@@ -8,7 +8,7 @@ pipeline {
         pollSCM('* /5 * * *')
     }
     environment {
-        IMAGE_NAME = 'webserver' 
+        IMAGE_NAME = 'webserver'
         KUBE_DEPLOYMENT = 'nginx-deployment'
         KUBE_NAMESPACE = 'default'
 
@@ -20,6 +20,16 @@ pipeline {
                     sh '''
                     cd docker/nginx
                     docker build -t $IMAGE_NAME .
+                    '''
+                }
+            }
+        }
+        stage('Setting up digital ocean cluster') {
+            steps {
+                echo "Setting up digital ocean cluster"
+                script {
+                    sh '''
+                    
                     '''
                 }
             }
