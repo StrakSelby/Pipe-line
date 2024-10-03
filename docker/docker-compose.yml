@@ -1,0 +1,41 @@
+#This compose use to run jenkins master on docker 
+services:
+  jenkins-buleocean:
+    image: jenkins_master
+    container_name: jenkins-blueocean 
+    environment:
+      - DOCKER_TLS_VERIFY=1
+      - DOCKER_HOST=tcp://docker:2375
+      - DOCKER_CERT_PATH=/certs/client
+    volumes:
+      - jenkins-data:/var/jenkins_home
+      - jenkins-docker-certs:/certs/client:ro
+    expose:
+      - 8080
+      - 50000
+    ports:
+      - '8080:8080'
+    networks:
+      - jenkins
+    restart: on-failure
+  alpine-slave:
+    image: alpine/socat
+    container_name: alpine-slave
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock 
+    command: tcp-listen:2375,fork,reuseaddr unix-connect:/var/run/docker.sock
+    ports:
+      - '127.0.0.1:2376:2375'
+    expose:
+      - 2375
+    networks:
+      - jenkins
+
+volumes:
+  jenkins-data:
+  jenkins-docker-certs:
+  
+networks:
+  jenkins:
+    driver: bridge
