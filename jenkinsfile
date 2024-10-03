@@ -4,9 +4,9 @@ pipeline {
             label 'jenkins_slave'
         }
     }
-    triggers {
-        pollSCM('* /5 * * *')
-    }
+    // triggers {
+    //     pollSCM('*/5 * * *')
+    // }
     environment {
         IMAGE_NAME = 'webserver'
         KUBE_DEPLOYMENT = 'nginx-deployment'
