@@ -13,6 +13,16 @@ pipeline {
         KUBE_NAMESPACE = 'default'
     }
     stages {
+        stage('Show docker info'){
+            steps {
+                echo "Print out docker information"
+                script {
+                    sh '''
+                    docker info
+                    '''
+                }
+            }
+        }
         stage('Build Docker Image') {
             steps {
                 echo "Building Docker image.."
