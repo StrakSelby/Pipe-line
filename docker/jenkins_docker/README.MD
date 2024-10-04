@@ -1,0 +1,1 @@
+I haven't fix the jenkins_slave docker image yet :(

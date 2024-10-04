@@ -65,8 +65,17 @@ pipeline {
                 echo 'Deploying to Kubernetes...'
                 script {
                     sh '''
+                    echo "Apply volume and configMap..."
+                    kubectl --kubeconfig=/home/cluster-kubeconfig.yaml apply -f kubernetes/volume/mariadb-configmap.yml
                     kubectl --kubeconfig=/home/cluster-kubeconfig.yaml apply -f kubernetes/volume/nginx-configmap.yml
+                    kubectl --kubeconfig=/home/cluster-kubeconfig.yaml apply -f kubernetes/volume/wordpress-configmap.yml
+                    kubectl --kubeconfig=/home/cluster-kubeconfig.yaml apply -f kubernetes/volume/mariadb-volume.yml
+                    kubectl --kubeconfig=/home/cluster-kubeconfig.yaml apply -f kubernetes/volume/mariadb-secret.yml
+
+                    echo "Apply the Deployment..."
                     kubectl --kubeconfig=/home/cluster-kubeconfig.yaml apply -f kubernetes/deployment/nginx-deployment.yml
+                    kubectl --kubeconfig=/home/cluster-kubeconfig.yaml apply -f kubernetes/deployment/mariadb-deployment.yml
+                    kubectl --kubeconfig=/home/cluster-kubeconfig.yaml apply -f kubernetes/deployment/wordpress-deployment.yml
                     '''
                 }
             }

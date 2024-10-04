@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress-deployment
+  labels:
+    app: wordpress
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wordpress
+  template:
+    metadata:
+      labels:
+        app: wordpress
+    spec:
+      containers:
+      - name: wordpress
+        image: wordpress:latest
+        ports: 
+          - containerPort: 8080
+        env:
+          - name: WORDPRESS_DB_HOST
+            valueFrom: 
+              configMapKeyRef:
+                name: mariadb-configmap
+                key: database_url
+          - name: WORDPRESS_DB_NAME
+            value: wordpress
+          - name: WORDPRESS_DB_PASSWORD
+            valueFrom: 
+              configMapKeyRef:
+                name: mariadb-secret
+                key: mariadb-root-password
+          - name: WORDPRESS_DB_USER
+            value: root
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        volumeMounts:
+          - name: apache-template
+            mountPath: /etc/apache2/sites-available/
+          - name: port-template
+            mountPath: /etc/apache2/
+      volumes:
+        - name: apache-template
+          configMap:
+            name: apache-template
+        - name: port-template
+          configMap:
+            name: port-template
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wordpress-service
+spec:
+  selector:
+    app: wordpress
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  clusterIP: None
