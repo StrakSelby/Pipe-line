@@ -1,13 +1,33 @@
-FROM jenkins/agent:latest
+FROM ubuntu:22.04
 USER root
+
+# Install necessary packages
 RUN apt-get update && apt-get install -y \
+    wget \
     curl \
-    docker.io \
+    apt-transport-https \
+    ca-certificates \
+    software-properties-common \
+    && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
+    && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable" \
+    && apt-get update \
+    && apt-get install -y docker-ce docker-compose \
+    && wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io.key \
+    && echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/" > /etc/apt/sources.list.d/jenkins.list \
+    && apt-get update \
+    && apt-get install -y jenkins \
     && curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl" \
     && chmod +x ./kubectl \
     && mv ./kubectl /usr/local/bin/kubectl \
     && apt-get remove -y curl \
     && apt-get autoremove -y \
     && apt-get clean
+
+# Add Jenkins user to the Docker group
 RUN usermod -aG docker jenkins
-USER jenkins
+
+# Set permissions for Docker socket
+RUN chmod 666 /var/run/docker.sock
+
+# Start Docker and Jenkins services
+CMD ["sh", "-c", "service docker start && service jenkins start && tail -f /dev/null"]
