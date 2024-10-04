@@ -19,6 +19,8 @@ pipeline {
                 script {
                     sh '''
                     docker info
+                    systemctl status docker
+                    systemctl enable docker 
                     '''
                 }
             }
