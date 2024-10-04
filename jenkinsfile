@@ -4,67 +4,54 @@ pipeline {
             label 'Node1'
         }
     }
-    // triggers {
-    //     pollSCM('*/5 * * *')
-    // }
     environment {
         IMAGE_NAME = 'webserver'
         KUBE_DEPLOYMENT = 'nginx-deployment'
         KUBE_NAMESPACE = 'default'
     }
     stages {
-        stage('Install docker'){
+        stage('Install Docker') {
             steps {
-                echo "Installing docker..."
+                echo "Installing Docker..."
                 script {
                     sh '''
-                    apt-get update
-                    apt-get install ca-certificates curl
-                    install -m 0755 -d /etc/apt/keyrings
-                    curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-                    chmod a+r /etc/apt/keyrings/docker.asc
-                    echo \
-                    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-                    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-                    tee /etc/apt/sources.list.d/docker.list > /dev/null
-                    apt-get update
+                    sudo apt-get update
+                    sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+                    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+                    echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list
+                    sudo apt-get update
+                    sudo apt-get install -y docker-ce
+                    sudo usermod -aG docker jenkins
                     '''
                 }
             }
         }
-        stage('Install kubectl'){
-            steps{
-                echo "Installing kubectl...."
-                script{
+        stage('Install kubectl') {
+            steps {
+                echo "Installing kubectl..."
+                script {
                     sh '''
-                    apt-get update
-                    apt-get install -y apt-transport-https ca-certificates curl gnupg
-                    curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
-                    chmod 644 /etc/apt/keyrings/kubernetes-apt-keyring.gpg
-                    echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
-                    chmod 644 /etc/apt/sources.list.d/kubernetes.list
-                    apt-get update
-                    apt-get install -y kubectl 
+                    curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+                    chmod +x ./kubectl
+                    sudo mv ./kubectl /usr/local/bin/kubectl
                     '''
                 }
             }
         }
         stage('Build Docker Image') {
             steps {
-                echo "Building Docker image.."
+                echo "Building Docker image..."
                 script {
                     sh '''
-                    pwd
-                    ls -al
                     cd docker/nginx/
                     docker build -t $IMAGE_NAME .
                     '''
                 }
             }
         }
-        stage('Setting up digital ocean cluster') {
+        stage('Setting up Digital Ocean Cluster') {
             steps {
-                echo "Setting up digital ocean cluster"
+                echo "Setting up Digital Ocean cluster..."
                 script {
                     sh '''
                     kubectl --kubeconfig=/home/cluster-kubeconfig.yaml get nodes
