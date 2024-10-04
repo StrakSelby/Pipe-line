@@ -20,7 +20,7 @@ pipeline {
                     sh '''
                     pwd
                     ls -al
-                    cd Pipe-line/docker/nginx
+                    cd docker/nginx/
                     docker build -t $IMAGE_NAME .
                     '''
                 }
