@@ -18,7 +18,7 @@ pipeline {
                 echo "Building Docker image.."
                 script {
                     sh '''
-                    cd docker/nginx
+                    cd Pipe-line/docker/nginx
                     docker build -t $IMAGE_NAME .
                     '''
                 }
