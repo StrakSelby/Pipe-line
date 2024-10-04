@@ -65,8 +65,8 @@ pipeline {
                 echo 'Deploying to Kubernetes...'
                 script {
                     sh '''
-                    kubectl apply -f kubernetes/volume/nginx-configmap.yml
-                    kubectl apply -f kubernetes/deployment/nginx-deployment.yml
+                    kubectl --kubeconfig=/home/cluster-kubeconfig.yaml apply -f kubernetes/volume/nginx-configmap.yml
+                    kubectl --kubeconfig=/home/cluster-kubeconfig.yaml apply -f kubernetes/volume/ngin-deployment.yml
                     '''
                 }
             }
