@@ -66,7 +66,7 @@ pipeline {
                 script {
                     sh '''
                     kubectl --kubeconfig=/home/cluster-kubeconfig.yaml apply -f kubernetes/volume/nginx-configmap.yml
-                    kubectl --kubeconfig=/home/cluster-kubeconfig.yaml apply -f kubernetes/volume/nginx-deployment.yml
+                    kubectl --kubeconfig=/home/cluster-kubeconfig.yaml apply -f kubernetes/deployment/nginx-deployment.yml
                     '''
                 }
             }
