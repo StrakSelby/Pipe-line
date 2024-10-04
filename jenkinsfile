@@ -63,6 +63,12 @@ pipeline {
                 echo 'Deploying to Kubernetes...'
                 script {
                     sh '''
+                    echo "Debug conetext"
+                    kubectl config current-context
+
+                    echo "Debug config file"
+                    cat /home/cluster-kubeconfig.yaml
+                        
                     kubectl apply -f kubernetes/volume/nginx-configmap.yml
                     kubectl apply -f kubernetes/deployment/nginx-deployment.yml
                     '''
