@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: mariadb-configmap
 data:
-  database_url: mariadb-internal-service
+  database_url: mariadb-internal-service:3306

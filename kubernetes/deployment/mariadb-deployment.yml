@@ -14,14 +14,14 @@ spec:
     spec: 
       containers:
       - name: mariadb
-        image: mariadb
+        image: mariadb:latest
         resources:
           requests:
-            memory: "64Mi"
-            cpu: "250m"
+            memory: "512Mi"
+            cpu: 1
           limits:
-            memory: "128Mi"
-            cpu: "500m"
+            memory: "512Mi"
+            cpu: 1
         ports:
         - containerPort: 3306 
         env:
@@ -30,6 +30,7 @@ spec:
             secretKeyRef:
               name: mariadb-secret
               key: mariadb-root-password
+              optional: false
         - name: MARIADB_DATABASE
           value: wordpress
         - name: MARIADB_USER
@@ -40,7 +41,7 @@ spec:
       volumes:
       - name: mariadb-pv
         persistentVolumeClaim:
-          claimName: mariab-pvc
+          claimName: mariadb-pvc
 ---
 apiVersion: v1
 kind: Service
@@ -53,4 +54,3 @@ spec:
     - protocol: TCP
       port: 3306
       targetPort: 3306
-  clusterIP: None

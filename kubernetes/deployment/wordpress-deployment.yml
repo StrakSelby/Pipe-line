@@ -20,18 +20,22 @@ spec:
         ports: 
           - containerPort: 8080
         env:
+          - name: WP_USE_THEMES
+            value: "true"
           - name: WORDPRESS_DB_HOST
             valueFrom: 
               configMapKeyRef:
                 name: mariadb-configmap
                 key: database_url
+                optional: false
           - name: WORDPRESS_DB_NAME
             value: wordpress
           - name: WORDPRESS_DB_PASSWORD
             valueFrom: 
-              configMapKeyRef:
+              secretKeyRef:
                 name: mariadb-secret
                 key: mariadb-root-password
+                optional: false
           - name: WORDPRESS_DB_USER
             value: root
         resources:
@@ -43,9 +47,11 @@ spec:
             cpu: "500m"
         volumeMounts:
           - name: apache-template
-            mountPath: /etc/apache2/sites-available/
+            mountPath: /etc/apache2/sites-available/000-default.conf
+            subPath: 000-default.conf
           - name: port-template
-            mountPath: /etc/apache2/
+            mountPath: /etc/apache2/ports.conf
+            subPath: ports.conf
       volumes:
         - name: apache-template
           configMap:
@@ -66,4 +72,4 @@ spec:
     - protocol: TCP
       port: 8080
       targetPort: 8080
-  clusterIP: None
+
