@@ -1,0 +1,31 @@
+- name: Delete nginx Deployment from namespace
+  kubernetes.core.k8s:
+    api_version: apps/v1
+    namespace: default
+    kind: Deployment
+    name: "{{ nginx }}"
+  tags: delete_nginx
+
+- name: Delete mariadb Deployment from namespace
+  kubernetes.core.k8s:
+    api_version: apps/v1
+    namespace: default
+    kind: Deployment
+    name: "{{ mariadb }}"
+  tags: delete_mariadb
+
+- name: Delete wordpress Deployment from namespace
+  kubernetes.core.k8s:
+    api_version: apps/v1
+    namespace: default
+    kind: Deployment
+    name: "{{ wordpress }}"
+  tags: delete_wordpress
+
+- name: Delete all Deployment from namespace
+  kubernetes.core.k8s:
+    api_version: apps/v1
+    namespace: default
+    kind: Deployment
+    delete_all: true
+  tags: delete_all

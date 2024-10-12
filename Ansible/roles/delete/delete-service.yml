@@ -1,0 +1,35 @@
+- name: Remove nginx service
+  kubernetes.core.k8s:
+    state: absent
+    api_version: v1
+    kind: Service
+    namespace: default
+    name: "{{ nginx-svc }}"
+  tags: nginx-svc
+
+- name: Remove mariadb service
+  kubernetes.core.k8s:
+    state: absent
+    api_version: v1
+    kind: Service
+    namespace: default
+    name: "{{ mariadb-svc }}"
+  tags: mariadb-svc
+
+- name: Remove wordpress service
+  kubernetes.core.k8s:
+    state: absent
+    api_version: v1
+    kind: Service
+    namespace: default
+    name: "{{ wordpress-svc }}"
+  tags: wordpress-svc
+
+- name: Remove all working service 
+  kubernetes.core.k8s:
+    state: absent
+    api_version: v1 
+    kind: Service 
+    namespace: default
+    delete_all: true
+  tags: remove_all-svc

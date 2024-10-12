@@ -1,0 +1,5 @@
+- name: Delete Deployment 
+  ansible.builtin.import_tasks: delete-deployment.yml
+
+- name: Delete Service
+  ansible.builtin.import_tasks: delete-service.yml

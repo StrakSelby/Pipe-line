@@ -1,0 +1,17 @@
+- name: Deploy nginx to cluster
+  kubernetes.core.k8s:
+    state: present
+    src: "{{ deploy_nginx }}"
+  tags: deploy-nginx
+
+- name: Deploy wordpress to cluster
+  kubernetes.core.k8s:
+    state: present 
+    src: "{{ deploy_wordpress }}"
+  tags: deploy-wordpress
+
+- name: Deploy mariadb to cluster
+  kubernetes.core.k8s:
+    state: present 
+    src: "{{ deploy_mariadb }}"
+  tags: deploy-mariadb
