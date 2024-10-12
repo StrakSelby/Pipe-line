@@ -4,70 +4,36 @@ pipeline {
             label 'Node1'
         }
     }
-    environment {
-        IMAGE_NAME = 'webserver'
-        KUBE_DEPLOYMENT = 'nginx-deployment'
-        KUBE_NAMESPACE = 'default'
-    }
     stages {
-        stage('Install Docker') {
+        stages {
+        stage('SCM checkout') {
             steps {
-                echo "Installing Docker..."
-                script {
-                    sh '''
-                    sudo apt-get update
-                    sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
-                    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-                    echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list
-                    sudo apt-get update
-                    sudo apt-get install -y docker-ce
-                    '''
-                }
+                git "https://github.com/StrakSelby/Pipe-line.git"
             }
         }
-        stage('Install kubectl') {
+        stage('Execute Ansible') {
             steps {
-                echo "Installing kubectl..."
-                script {
-                    sh '''
-                    curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
-                    chmod +x ./kubectl
-                    sudo mv ./kubectl /usr/local/bin/kubectl
-                    '''
-                }
+                echo 'Running playbook.......'
+                ansiblePlaybook (
+                    credentialsId: 'private-key',
+                    disableHostKeyChecking: true,
+                    installation: 'Ansible',
+                    inventory: 'Ansible/inventory.k8s.yml',
+                    playbook: 'Ansible/playbook.yml',
+                    colorized: true)
             }
         }
-        stage('Setting up Digital Ocean Cluster') {
-            steps {
-                echo "Setting up Digital Ocean cluster..."
-                script {
-                    sh '''
-                    export KUBECONFIG=/home/cluster-kubeconfig.yaml
-                    kubectl config current-context
-                    kubectl --kubeconfig=/home/cluster-kubeconfig.yaml get nodes
+        stage('Execute Kubernetes'){
+            steps{
+                echo ''
+                script{
+                    sh
                     '''
-                }
-            }
-        }
-        stage('Deploy to Kubernetes') {
-            steps {
-                echo 'Deploying to Kubernetes...'
-                script {
-                    sh '''
-                    echo "Apply volume and configMap..."
-                    kubectl --kubeconfig=/home/cluster-kubeconfig.yaml apply -f kubernetes/volume/mariadb-configmap.yml
-                    kubectl --kubeconfig=/home/cluster-kubeconfig.yaml apply -f kubernetes/volume/nginx-configmap.yml
-                    kubectl --kubeconfig=/home/cluster-kubeconfig.yaml apply -f kubernetes/volume/wordpress-configmap.yml
-                    kubectl --kubeconfig=/home/cluster-kubeconfig.yaml apply -f kubernetes/volume/mariadb-volume.yml
-                    kubectl --kubeconfig=/home/cluster-kubeconfig.yaml apply -f kubernetes/volume/mariadb-secret.yml
-
-                    echo "Apply the Deployment..."
-                    kubectl --kubeconfig=/home/cluster-kubeconfig.yaml apply -f kubernetes/deployment/nginx-deployment.yml
-                    kubectl --kubeconfig=/home/cluster-kubeconfig.yaml apply -f kubernetes/deployment/mariadb-deployment.yml
-                    kubectl --kubeconfig=/home/cluster-kubeconfig.yaml apply -f kubernetes/deployment/wordpress-deployment.yml
                     '''
                 }
             }
         }
     }
+}
+
 }

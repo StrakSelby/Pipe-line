@@ -1,3 +1,8 @@
+kubectl:
+	export KUBECONFIG=/home/cluster-kubeconfig.yaml
+    kubectl config current-context
+    kubectl --kubeconfig=/home/cluster-kubeconfig.yaml get nodes
+
 deploy-service:
 	kubectl apply -f kubernetes/volume/mariadb-configmap.yml
 	kubectl apply -f kubernetes/volume/nginx-configmap.yml
