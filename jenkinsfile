@@ -23,17 +23,8 @@ pipeline {
                     colorized: true)
             }
         }
-        stage('Execute Kubernetes'){
-            steps{
-                echo ''
-                script{
-                    sh
-                    '''
-                    '''
-                }
-            }
+
         }
     }
 }
 
-}
