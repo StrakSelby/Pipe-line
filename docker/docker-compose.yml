@@ -1,7 +1,7 @@
 # Specify the version of the Docker Compose file
 services:
   jenkins-blueocean:
-    image: jenkins_master
+    image: jenkins
     container_name: jenkins-blueocean 
     environment:
       - DOCKER_TLS_VERIFY=1
