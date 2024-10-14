@@ -5,36 +5,37 @@ pipeline {
         }
     }
     stages {
-        stages {
-        stage('SCM checkout') {
+        stage('SCM Checkout') {
             steps {
                 git "https://github.com/StrakSelby/Pipe-line.git"
             }
         }
-        stage('Installing ansible on the agent')
-            steps{
-                script{
+        stage('Install Ansible on the Agent') {
+            steps {
+                script {
                     sh '''
                     apt update
-                    apt install software-properties-common
+                    apt install software-properties-common -y
                     add-apt-repository --yes --update ppa:ansible/ansible
                     apt install -y ansible
                     '''
                 }
             }
-        stage('Setup kubernetes plugin for Ansible')
-            steps{
-                script{
+        }
+        stage('Setup Kubernetes Plugin for Ansible') {
+            steps {
+                script {
                     sh '''
                     apt install python3-pip -y
-                    pip install kubernetes
+                    pip3 install kubernetes
                     echo 'Edit ansible.cfg for kubernetes plugin'
                     echo "[inventory]" >> /etc/ansible/ansible.cfg
                     echo "enable_plugins = kubernetes.core.k8s" >> /etc/ansible/ansible.cfg
                     '''
                 }
             }
-        stage('Execute Ansible') {
+        }
+        stage('Execute Ansible Playbook') {
             steps {
                 echo 'Running playbook.......'
                 ansiblePlaybook (
@@ -43,11 +44,9 @@ pipeline {
                     installation: 'Ansible',
                     inventory: 'Ansible/inventory.k8s.yml',
                     playbook: 'Ansible/playbook.yml',
-                    colorized: true)
+                    colorized: true
+                )
             }
-        }
-
         }
     }
 }
-
