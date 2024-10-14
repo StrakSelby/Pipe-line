@@ -4,7 +4,7 @@
     api_version: v1
     kind: Service
     namespace: default
-    name: "{{ nginx-svc }}"
+    name: "{{ nginx_svc }}"
   tags: nginx-svc
 
 - name: Remove mariadb service
@@ -13,7 +13,7 @@
     api_version: v1
     kind: Service
     namespace: default
-    name: "{{ mariadb-svc }}"
+    name: "{{ mariadb_svc }}"
   tags: mariadb-svc
 
 - name: Remove wordpress service
@@ -22,7 +22,7 @@
     api_version: v1
     kind: Service
     namespace: default
-    name: "{{ wordpress-svc }}"
+    name: "{{ wordpress_svc }}"
   tags: wordpress-svc
 
 - name: Remove all working service 

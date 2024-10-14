@@ -2,9 +2,9 @@ deploy_nginx: kubernetes/deployment/nginx-deployment.yml
 deploy_wordpress: kubernetes/deployment/wordpress-deployment.yml
 deploy_mariadb: kubernetes/deployment/mariadb-deployment.yml
 
-nginx-svc: nginx-service
-wordpress-svc: wordpress-service
-mariadb-svc: mariadb-internal-service
+nginx_svc: nginx-service
+wordpress_svc: wordpress-service
+mariadb_svc: mariadb-internal-service
 
 mariadb_volume: kubernetes/deployment/mariadb-volume.yml
 mariadb_configmap: kubernetes/deployment/mariadb-configmap.yml
