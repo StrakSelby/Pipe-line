@@ -3,6 +3,8 @@ kind: PersistentVolume
 metadata:
   name: mariadb-pv
   namespace: default
+  labels:
+    app: wordpress-templates
 spec:
   capacity:
     storage: 20Gi
