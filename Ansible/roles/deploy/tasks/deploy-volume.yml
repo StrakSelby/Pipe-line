@@ -2,7 +2,7 @@
   kubernetes.core.k8s: 
     state: present 
     src: "{{ mariadb_volume }}"
-  tage: mariadb-volume
+  tags: mariadb-volume
 
 - name: Deploy mariadb configmap 
   kubernetes.core.k8s:
