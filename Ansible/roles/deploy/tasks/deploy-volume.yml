@@ -19,7 +19,7 @@
 - name: Deploy nginx configmap 
   kubernetes.core.k8s:
     state: present 
-    src: "{{ nginx_configmap: }}"
+    src: "{{ nginx_configmap }}"
   tags: nginx-configmap 
 
 - name: Deploy wordpress configmap 
