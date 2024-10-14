@@ -6,8 +6,8 @@ nginx_svc: nginx-service
 wordpress_svc: wordpress-service
 mariadb_svc: mariadb-internal-service
 
-mariadb_volume: kubernetes/deployment/mariadb-volume.yml
-mariadb_configmap: kubernetes/deployment/mariadb-configmap.yml
-mariadb_secret: kubernetes/deployment/mariadb-secret.yml
-nginx_configmap: kubernetes/deployment/nginx-configmap.yml
-wordpress_configmap: kubernetes/deployment/wordpress-configmap.yml
+mariadb_volume: /home/jenkins/workspace/Deployment/kubernetes/deployment/mariadb-volume.yml
+mariadb_configmap: /home/jenkins/workspace/Deployment/kubernetes/deployment/mariadb-configmap.yml
+mariadb_secret: /home/jenkins/workspace/Deployment/kubernetes/deployment/mariadb-secret.yml
+nginx_configmap: /home/jenkins/workspace/Deployment/kubernetes/deployment/nginx-configmap.yml
+wordpress_configmap: /home/jenkins/workspace/Deployment/deployment/wordpress-configmap.yml
