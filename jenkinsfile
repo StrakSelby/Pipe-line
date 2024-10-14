@@ -5,11 +5,11 @@ pipeline {
         }
     }
     stages {
-        stage('SCM Checkout') {
-            steps {
-                git "https://github.com/StrakSelby/Pipe-line.git"
-            }
-        }
+        // stage('SCM Checkout') {
+        //     steps {
+        //         git "https://github.com/StrakSelby/Pipe-line.git"
+        //     }
+        // }
         stage('Install Ansible on the Agent') {
             steps {
                 script {
