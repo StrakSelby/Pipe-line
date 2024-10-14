@@ -1,0 +1,7 @@
+deploy_nginx: kubernetes/deployment/nginx-deployment.yml
+deploy_wordpress: kubernetes/deployment/wordpress-deployment.yml
+deploy_mariadb: kubernetes/deployment/mariadb-deployment.yml
+
+nginx-svc: nginx-service
+wordpress-svc: wordpress-service
+mariadb-svc: mariadb-internal-service

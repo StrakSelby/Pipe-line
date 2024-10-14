@@ -1,2 +1,0 @@
-- name: Deploy to kubernetes cluster
-  ansible.builtin.import_tasks: deployment.yml

@@ -1,0 +1,6 @@
+- name: Deploy Volumes
+  ansible.builtin.import_tasks: deploy-volume.yml
+
+- name: Deploy to kubernetes cluster
+  ansible.builtin.import_tasks: deployment.yml
+
