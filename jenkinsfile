@@ -38,7 +38,7 @@ pipeline {
             steps {
                 echo 'Running playbook.......'
                 ansiblePlaybook (
-                    credentialsId: 'private-key',
+                    credentialsId: '5cda38a1-df71-4fc9-8cfe-19cacc50cea8',
                     disableHostKeyChecking: true,
                     installation: 'Ansible',
                     inventory: 'Ansible/inventory.k8s.yml',
