@@ -28,9 +28,9 @@ pipeline {
                     sh '''
                     apt install python3-pip -y
                     pip3 install kubernetes
-                    echo 'Edit ansible.cfg for kubernetes plugin'
-                    echo "[inventory]" >> /etc/ansible/ansible.cfg
-                    echo "enable_plugins = kubernetes.core.k8s" >> /etc/ansible/ansible.cfg
+                    // echo 'Edit ansible.cfg for kubernetes plugin'
+                    // echo "[inventory]" >> /etc/ansible/ansible.cfg
+                    // echo "enable_plugins = kubernetes.core.k8s" >> /etc/ansible/ansible.cfg
                     '''
                 }
             }
