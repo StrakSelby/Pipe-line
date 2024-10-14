@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: nginx-templates
+  namespace: default
   labels:
     app: nginx-templates
 data:
