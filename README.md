@@ -1,5 +1,4 @@
-![logo-kubernetes](https://kangaroot.net/sites/default/files/media/images/2021-06/Kubernetes_icon.png)
-![Logo-jenkins](https://www.jenkins.io/images/logos/automotive/automotive.png)
+![Logo-jenkins](https://www.jenkins.io/images/logos/clown/clown.png)
 
 
 ## Setup Ansible on Agent
