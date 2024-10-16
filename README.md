@@ -1,6 +1,6 @@
-![logo-kubernetes](http://cdn.ocsinventory-ng.org/common/banners/banner300px.png)
-![Logo-jenkins](https://w7.pngwing.com/pngs/829/527/png-transparent-computer-icons-jenkins-mauldin-jenkins-llc-head-communication-mauldin-jenkins-llc-thumbnail.png)
-![logo-docker](https://w7.pngwing.com/pngs/237/269/png-transparent-docker-logo-docker-logo-kubernetes-software-deployment-engineer-logo-logo-area-line-thumbnail.png)
+![logo-kubernetes](https://kangaroot.net/sites/default/files/media/images/2021-06/Kubernetes_icon.png)
+![Logo-jenkins](https://www.jenkins.io/images/logos/automotive/automotive.png)
+
 
 ## Setup Ansible on Agent
 ```
