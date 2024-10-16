@@ -1,13 +1,26 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress 
 metadata:
-  name: ingress 
+  name: ingress
+  annotations:
+    #Allow TLS passthrough with an Ingress annotation
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    #Allow HTTP request to redirect HTTPs
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 spec:
   ingressClassName: nginx-ingress
+  tls: 
+  - hosts:
+    - starkdomain.me 
+    secretName: certificate-secret
   rules:
-  - https: 
+  - host: starkdomain.me 
+    http: 
       paths: 
-      - path: /
+      - pathType: Prefix 
+        path: /
         backend:
-          serviceName: nginx-service
-          servicePort: 443
+          service:
+            name: wordpress-service
+          port:
+            number: 8080
