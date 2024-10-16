@@ -21,3 +21,8 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 kubectl get pods --namespace ingress-nginx
 kubectl get service ingress-nginx-controller --namespace=ingress-nginx
 ```
+## Setup DNS record for ingress
+```
+kubectl create ingress <name> --class=nginx --rule [DNS_NAME]/=<name>:<service-port>
+Note: Replace the [DNS_NAME] with DNS record.
+```
