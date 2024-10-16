@@ -1,11 +1,10 @@
 ![Logo-jenkins](https://www.jenkins.io/images/logos/clown/clown.png)
 
 ## Introduction 
-```
 >In this project i'm working on the pipeline using Ansible, kubernetes and jenkins. I'm planning to 
 improve this project by make it become a full CI/CD project, but it takes time for as i learn and do 
 at the same time.
-```
+
 
 ## Setup Ansible on Agent
 ```
