@@ -22,6 +22,14 @@
     name: "{{ wordpress }}"
   tags: delete_wordpress
 
+- name: Delete ingress Deployment from namespace
+  kubernetes.core.k8s:
+    api_version: apps/v1
+    namespace: default
+    kind: Deployment
+    name: "{{ ingress }}"
+  tags: delete_ingress
+
 - name: Delete all Deployment from namespace
   kubernetes.core.k8s:
     api_version: apps/v1

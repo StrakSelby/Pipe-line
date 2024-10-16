@@ -2,28 +2,40 @@
   kubernetes.core.k8s: 
     state: present 
     src: "{{ mariadb_volume }}"
+    namespace: default
   tags: mariadb-volume
 
 - name: Deploy mariadb configmap 
   kubernetes.core.k8s:
     state: present
     src: "{{ mariadb_configmap }}"
+    namespace: default
   tags: mariadb-configmap
 
 - name: Deploy mariadb secret 
   kubernetes.core.k8s:
     state: present 
     src: "{{ mariadb_secret }}"
+    namespace: default
   tags: mariadb-secret
 
 - name: Deploy nginx configmap 
   kubernetes.core.k8s:
     state: present 
     src: "{{ nginx_configmap }}"
+    namespace: default
   tags: nginx-configmap 
 
 - name: Deploy wordpress configmap 
   kubernetes.core.k8s:
     state: present 
     src: "{{ wordpress_configmap }}"
+    namespace: default
   tags: wordpress-configmap
+
+- name: Deploy certificate-secret
+  kubernetes.core.k8s:
+    state: present 
+    src: "{{ certificate_secret }}"
+    namespace: default
+  tags: certificate-secret
