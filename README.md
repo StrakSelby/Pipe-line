@@ -26,3 +26,20 @@ kubectl get service ingress-nginx-controller --namespace=ingress-nginx
 kubectl create ingress <name> --class=nginx --rule [DNS_NAME]/=<name>:<service-port>
 Note: Replace the [DNS_NAME] with DNS record.
 ```
+## Generate Private Key and CSR
+```
+openssl req -newkey rsa:2048 -nodes -keyout tls.key -out tls.csr
+```
+## Create Self-Signed Certificate
+```
+openssl x509 -req -sha256 -days 365 -in tls.csr -signkey tls.key -out tls.crt
+```
+## Store Certificate in Kubernetes Secret
+```
+kubectl create secret tls my-certificate --cert=tls.crt --key=tls.key
+```
+## Encode certifcate to base64
+```
+cat /path/to/tls.crt | base64
+cat /path/to/tls.key | base64
+```
