@@ -14,16 +14,30 @@ services:
       - 8080
       - 50000
     ports:
-      - '8080:8080'    # Jenkins UI
+      - '8080:8080'    
     networks:
       - jenkins
     dns:
-      - 8.8.8.8       # Google DNS
+      - 8.8.8.8       
+    restart: on-failure
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    expose:
+      - 9090
+    ports:
+      - '9090:9090'
+    volumes:
+      - prometheus-data:/prometheus
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - jenkins
     restart: on-failure
 
 volumes:
   jenkins-data:
   jenkins-docker-certs:
+  prometheus-data:
 
 networks:
   jenkins:
