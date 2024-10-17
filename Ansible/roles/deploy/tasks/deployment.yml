@@ -2,26 +2,26 @@
   kubernetes.core.k8s:
     state: present 
     src: "{{ deploy_ingress }}"
-    namespace: default
+    namespace: ingress-nginx
   tags: deploy-ingress
 
 - name: Deploy nginx to cluster
   kubernetes.core.k8s:
     state: present
     src: "{{ deploy_nginx }}"
-    namespace: default
+    namespace: ingress-nginx
   tags: deploy-nginx
 
 - name: Deploy wordpress to cluster
   kubernetes.core.k8s:
     state: present 
     src: "{{ deploy_wordpress }}"
-    namespace: default
+    namespace: ingress-nginx
   tags: deploy-wordpress
 
 - name: Deploy mariadb to cluster
   kubernetes.core.k8s:
     state: present 
     src: "{{ deploy_mariadb }}"
-    namespace: default
+    namespace: ingress-nginx
   tags: deploy-mariadb
