@@ -1,26 +1,24 @@
 apiVersion: networking.k8s.io/v1
-kind: Ingress 
+kind: Ingress
 metadata:
   name: ingress-deployment
   annotations:
-    #Allow TLS passthrough with an Ingress annotation
     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-    #Allow HTTP request to redirect HTTPs
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 spec:
   ingressClassName: nginx-ingress
-  tls: 
+  tls:
   - hosts:
-    - starkdomain.me 
+    - starkdomain.me
     secretName: certificate-secret
   rules:
-  - host: "starkdomain.me" 
-    http: 
-      paths: 
-      - pathType: Prefix 
+  - host: "starkdomain.me"
+    http:
+      paths:
+      - pathType: Prefix
         path: /
         backend:
           service:
             name: nginx-service
-          port:
-            number: 8081
+            port:
+              number: 8081
