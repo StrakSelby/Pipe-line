@@ -3,14 +3,14 @@ kind: Ingress
 metadata:
   name: ingress-deployment
   annotations:
-    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    # nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
 spec:
   ingressClassName: nginx-ingress
-  tls:
-  - hosts:
-    - starkdomain.me
-    secretName: certificate-secret
+  # tls:
+  # - hosts:
+  #   - starkdomain.me
+  #   secretName: certificate-secret
   rules:
   - host: "starkdomain.me"
     http:
