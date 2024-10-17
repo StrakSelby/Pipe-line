@@ -1,0 +1,51 @@
+- name: Delete nginx_configmap from namespace
+  kubernetes.core.k8s:
+    api_version: apps/v1
+    namespace: default
+    kind: ConfigMap
+    name: "{{ nginx_configmap }}"
+    state: absent
+  tags: delete_nginx_configmap
+
+- name: Delete wordpress_configmap from namespace
+  kubernetes.core.k8s:
+    api_version: apps/v1
+    namespace: default
+    kind: ConfigMap
+    name: "{{ wordpress_configmap }}"
+    state: absent
+  tags: delete_wordpress_configmap
+
+- name: Delete mariadb_configmap from namespace
+  kubernetes.core.k8s:
+    api_version: apps/v1
+    namespace: default
+    kind: ConfigMap
+    name: "{{ mariadb_configmap }}"
+    state: absent
+  tags: delete_mariadb_configmap
+
+- name: Delete mariadb_volume from namespace
+  kubernetes.core.k8s:
+    api_version: apps/v1
+    namespace: default
+    kind: PrsistentVolume
+    name: "{{ mariadb_volume }}"
+    state: absent
+  tags: delete_mariadb_volume
+
+- name: Delete mariadb_secret from namespace
+  kubernetes.core.k8s:
+    api_version: apps/v1
+    namespace: default
+    kind: Secret 
+    name: "{{ mariadb_secret }}"
+  tags: delete_mariadb_secret
+
+- name: Delete certificate_secret from namespace 
+  kubernetes.core.k8s:
+    api_version: apps/v1
+    namespace: default
+    kind: Secret 
+    name: "{{ certificate_secret }}"
+  tags: delete_certificate_secret

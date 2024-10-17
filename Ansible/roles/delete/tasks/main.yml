@@ -1,5 +1,11 @@
 - name: Delete Deployment 
   ansible.builtin.import_tasks: delete-deployment.yml
+  tags: del_deploy
 
 - name: Delete Service
   ansible.builtin.import_tasks: delete-service.yml
+  tags: del_svc
+
+- name: Delete volume 
+  ansible.builtin.import_tasks: delete-volume.yml
+  tags: del_vol
