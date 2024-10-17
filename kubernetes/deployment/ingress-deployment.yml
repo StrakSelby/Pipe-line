@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress 
 metadata:
-  name: ingress
+  name: ingress-deployment
   annotations:
     #Allow TLS passthrough with an Ingress annotation
     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
