@@ -23,13 +23,8 @@ echo "enable_plugins = kubernetes.core.k8s" >> /etc/ansible/ansible.cfg
 ## Setup nginx ingress
 ```
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.0/deploy/static/provider/cloud/deploy.yaml
-kubectl get pods --namespace ingress-nginx
-kubectl get service ingress-nginx-controller --namespace=ingress-nginx
-```
-## Setup DNS record for ingress
-```
-kubectl create ingress <name> --class=nginx --rule [DNS_NAME]/=<name>:<service-port>
-Note: Replace the [DNS_NAME] with DNS record.
+kubectl get pods --namespace default
+kubectl get service ingress-nginx-controller --namespace=default
 ```
 ## Generate Private Key and CSR
 ```
