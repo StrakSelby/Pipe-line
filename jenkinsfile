@@ -5,19 +5,20 @@ pipeline {
         }
     }
     stages {
-        // stage('Setup Nginx Ingress') {
-        //     steps{
-        //         sh '''
-        //         kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.0/deploy/static/provider/cloud/deploy.yaml
-        //         kubectl create ingress demo --class=nginx --rule "starkdomain.me"/=demo:80
-        //         '''
-        //     }
-        // }
+        stage('Setup Nginx Ingress') {
+            steps{
+                sh '''
+                kubectl create ns ingress-nginx
+                kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.0/deploy/static/provider/cloud/deploy.yaml
+                kubectl create ingress demo --class=nginx --rule "starkdomain.me"/=demo:80
+                '''
+            }
+        }
         stage('Execute Ansible Playbook') {
             steps {
                 echo 'Running playbook.......'
                 ansiblePlaybook (
-                    credentialsId: '5cda38a1-df71-4fc9-8cfe-19cacc50cea8',
+                    credentialsId: '53bcae05-a087-4903-ba8b-d324766d3660',
                     disableHostKeyChecking: true,
                     installation: 'Ansible',
                     inventory: 'Ansible/inventory.k8s.yml',
