@@ -1,9 +1,9 @@
-- name: Deploy ingress
-  kubernetes.core.k8s:
-    state: present 
-    src: "{{ deploy_ingress }}"
-    namespace: ingress-nginx
-  tags: deploy-ingress
+# - name: Deploy ingress
+#   kubernetes.core.k8s:
+#     state: present 
+#     src: "{{ deploy_ingress }}"
+#     namespace: ingress-nginx
+#   tags: deploy-ingress
 
 - name: Deploy nginx to cluster
   kubernetes.core.k8s:
