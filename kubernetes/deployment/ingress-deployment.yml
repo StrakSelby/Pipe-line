@@ -15,7 +15,7 @@ spec:
   #   - starkdomain.me
   #   secretName: certificate-secret
   rules:
-  - host: "starkdomain.me"
+  # - host: "starkdomain.me"
     http:
       paths:
       - pathType: Prefix
