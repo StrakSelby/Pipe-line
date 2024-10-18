@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: wordpress-deployment
-  namespace: default
+  namespace: ingress-nginx
   labels:
     app: wordpress
 spec:

@@ -3,7 +3,7 @@
     state: absent
     api_version: v1
     kind: Service
-    namespace: default
+    namespace: ingress-nginx
     name: "{{ nginx_svc }}"
   tags: nginx-svc
 
@@ -12,7 +12,7 @@
     state: absent
     api_version: v1
     kind: Service
-    namespace: default
+    namespace: ingress-nginx
     name: "{{ mariadb_svc }}"
   tags: mariadb-svc
 
@@ -21,15 +21,24 @@
     state: absent
     api_version: v1
     kind: Service
-    namespace: default
+    namespace: ingress-nginx
     name: "{{ wordpress_svc }}"
   tags: wordpress-svc
 
-- name: Remove all working service 
+- name: Remove ingress controller svc 
   kubernetes.core.k8s:
     state: absent
     api_version: v1 
     kind: Service 
-    namespace: default
-    delete_all: true
-  tags: remove_all-svc
+    namespace: ingress-nginx
+    name: "{{ controller }}"
+  tags: controller-svc
+
+- name: Remove ingress controller-admission
+  kubernetes.core.k8s:
+    state: absent
+    api_version: v1
+    kind: Service
+    namespace: ingress-nginx
+    name: "{{ controller_admission }}"
+  tags: controller-admission

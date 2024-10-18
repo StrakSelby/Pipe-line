@@ -1,7 +1,7 @@
 - name: Delete nginx Deployment from namespace
   kubernetes.core.k8s:
     api_version: apps/v1
-    namespace: default
+    namespace: ingress-nginx
     kind: Deployment
     name: "{{ nginx }}"
     state: absent
@@ -10,7 +10,7 @@
 - name: Delete mariadb Deployment from namespace
   kubernetes.core.k8s:
     api_version: apps/v1
-    namespace: default
+    namespace: ingress-nginx
     kind: Deployment
     name: "{{ mariadb }}"
     state: absent
@@ -19,7 +19,7 @@
 - name: Delete wordpress Deployment from namespace
   kubernetes.core.k8s:
     api_version: apps/v1
-    namespace: default
+    namespace: ingress-nginx
     kind: Deployment
     name: "{{ wordpress }}"
     state: absent

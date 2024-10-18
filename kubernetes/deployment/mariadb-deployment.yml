@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mariadb-deployment
-  namespace: default
+  namespace: ingress-nginx
 spec: 
   replicas: 1
   selector:

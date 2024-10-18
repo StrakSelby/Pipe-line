@@ -13,3 +13,6 @@ mariadb_secret: /home/jenkins/workspace/Deployment/kubernetes/volume/mariadb-sec
 nginx_configmap: /home/jenkins/workspace/Deployment/kubernetes/volume/nginx-configmap.yml
 wordpress_configmap: /home/jenkins/workspace/Deployment/volume/wordpress-configmap.yml
 certificate_secret: /home/jenkins/workspace/Deployment/kubernetes/volume/certificate-secret.yml
+
+controller: ingress-nginx-controller
+controller_admission: ingress-nginx-controller-admission

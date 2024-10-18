@@ -1,7 +1,7 @@
 - name: Delete nginx_configmap from namespace
   kubernetes.core.k8s:
     api_version: v1
-    namespace: default
+    namespace: ingress-nginx
     kind: ConfigMap
     name: "{{ nginx_configmap }}"
     state: absent
@@ -10,7 +10,7 @@
 - name: Delete wordpress_configmap from namespace
   kubernetes.core.k8s:
     api_version: v1
-    namespace: default
+    namespace: ingress-nginx
     kind: ConfigMap
     name: "{{ wordpress_configmap }}"
     state: absent
@@ -19,7 +19,7 @@
 - name: Delete mariadb_configmap from namespace
   kubernetes.core.k8s:
     api_version: v1
-    namespace: default
+    namespace: ingress-nginx
     kind: ConfigMap
     name: "{{ mariadb_configmap }}"
     state: absent
@@ -28,7 +28,7 @@
 - name: Delete mariadb_volume from namespace
   kubernetes.core.k8s:
     api_version: v1
-    namespace: default
+    namespace: ingress-nginx
     kind: PersistentVolume
     name: "{{ mariadb_volume }}"
     state: absent
@@ -37,7 +37,7 @@
 - name: Delete mariadb_secret from namespace
   kubernetes.core.k8s:
     api_version: v1
-    namespace: default
+    namespace: ingress-nginx
     kind: Secret
     name: "{{ mariadb_secret }}"
     state: absent
@@ -46,7 +46,7 @@
 - name: Delete certificate_secret from namespace 
   kubernetes.core.k8s:
     api_version: v1
-    namespace: default
+    namespace: ingress-nginx
     kind: Secret 
     name: "{{ certificate_secret }}"
     state: absent
