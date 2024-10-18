@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: apache-template
-  namespace: default
+  namespace: ingress-nginx
   labels: 
     app: apache-template
 data:

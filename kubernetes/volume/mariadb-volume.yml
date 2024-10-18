@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: mariadb-pv
-  namespace: default
+  namespace: ingress-nginx
   labels:
     app: wordpress-templates
 spec:
