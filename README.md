@@ -20,6 +20,24 @@ pip3 install kubernetes
 echo "[inventory]" >> /etc/ansible/ansible.cfg
 echo "enable_plugins = kubernetes.core.k8s" >> /etc/ansible/ansible.cfg
 ```
+## Setup java jdk for Agent
+```
+apt update
+apt install fontconfig openjdk-17-jre
+```
+## Setup kubectl for Agent
+```
+snap install kubectl --classic
+kubectl version --client
+ snap connect doctl:kube-config
+```
+## Setup doctl for Digital-Ocean cluster and Authentication
+```
+apt update
+apt install snapd
+snap install doctl
+doctl auth init
+```
 ## Setup nginx ingress
 ```
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.0/deploy/static/provider/cloud/deploy.yaml
