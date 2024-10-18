@@ -19,9 +19,9 @@
     namespace: ingress-nginx
   tags: deploy-wordpress
 
-- name: Deploy mariadb to cluster
-  kubernetes.core.k8s:
-    state: present 
-    src: "{{ deploy_mariadb }}"
-    namespace: ingress-nginx
-  tags: deploy-mariadb
+# - name: Deploy mariadb to cluster
+#   kubernetes.core.k8s:
+#     state: present 
+#     src: "{{ deploy_mariadb }}"
+#     namespace: ingress-nginx
+#   tags: deploy-mariadb
