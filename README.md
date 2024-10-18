@@ -29,7 +29,7 @@ apt install fontconfig openjdk-17-jre
 ```
 snap install kubectl --classic
 kubectl version --client
- snap connect doctl:kube-config
+snap connect doctl:kube-config
 ```
 ## Setup doctl for Digital-Ocean cluster and Authentication
 ```

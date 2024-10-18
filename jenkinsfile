@@ -9,7 +9,7 @@ pipeline {
         //     steps{
         //         sh '''
         //         kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.0/deploy/static/provider/cloud/deploy.yaml
-        //         kubectl create ingress demo --class=nginx --rule [starkdomain.me]/=demo:80"
+        //         kubectl create ingress demo --class=nginx --rule "starkdomain.me"/=demo:80
         //         '''
         //     }
         // }
