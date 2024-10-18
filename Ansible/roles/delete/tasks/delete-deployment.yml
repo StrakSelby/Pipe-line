@@ -1,7 +1,7 @@
 - name: Delete nginx Deployment from namespace
   kubernetes.core.k8s:
     api_version: apps/v1
-    namespace: ingress-nginx
+    namespace: default
     kind: Deployment
     name: "{{ nginx }}"
     state: absent
@@ -28,7 +28,7 @@
 - name: Delete ingress Deployment from namespace
   kubernetes.core.k8s:
     api_version: apps/v1
-    namespace: default
+    namespace: ingress-nginx
     kind: Deployment
     name: "{{ ingress }}"
     state: absent
