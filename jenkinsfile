@@ -1,9 +1,10 @@
 pipeline {
-    agent { 
-        node {
-            label 'Node1'
-        }
-    }
+    agent any
+    // agent { 
+    //     // node {
+    //     //     label 'Node1'
+    //     // }
+    // }
     stages {
         stage('Setup Nginx Ingress') {
             steps{
