@@ -5,15 +5,15 @@ pipeline {
             label 'Node1'
         }
     }
-    stages {
-        stage('Setup Nginx Ingress') {
-            steps{
-                sh '''
-                kubectl create ns ingress-nginx
-                kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.0/deploy/static/provider/cloud/deploy.yaml
-                '''
-            }
-        }
+    // stages {
+    //     stage('Setup Nginx Ingress') {
+    //         steps{
+    //             sh '''
+    //             kubectl create ns ingress-nginx
+    //             kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.0/deploy/static/provider/cloud/deploy.yaml
+    //             '''
+    //         }
+    //     }
         stage('Execute Ansible Playbook') {
             steps {
                 echo 'Running playbook.......'
