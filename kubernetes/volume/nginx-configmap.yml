@@ -8,7 +8,7 @@ metadata:
 data:
   default.conf : |
     server {
-    listen 8081;
+    listen 80;
     location / {
           gzip on;
           gzip_min_length 10240;

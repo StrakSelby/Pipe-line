@@ -19,7 +19,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: port-template
-  namespace: default
+  namespace: ingress-nginx
   labels: 
     app: port-template
 data:
