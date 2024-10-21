@@ -1,11 +1,5 @@
 ![Logo-jenkins](https://www.jenkins.io/images/logos/clown/clown.png)
 
-## Introduction 
->In this project i'm working on the pipeline using Ansible, kubernetes and jenkins. I'm planning to 
-improve this project by make it become a full CI/CD project, but it takes time for as i learn and do 
-at the same time.
-
-
 ## Setup Ansible on Agent
 ```
 apt update
@@ -51,10 +45,6 @@ openssl req -newkey rsa:2048 -nodes -keyout tls.key -out tls.csr
 ## Create Self-Signed Certificate
 ```
 openssl x509 -req -sha256 -days 365 -in tls.csr -signkey tls.key -out tls.crt
-```
-## Store Certificate in Kubernetes Secret
-```
-kubectl create secret tls my-certificate --cert=tls.crt --key=tls.key
 ```
 ## Encode certifcate to base64
 ```
