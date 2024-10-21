@@ -10,10 +10,10 @@ metadata:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 spec:
   ingressClassName: nginx
-  # tls:
-  # - hosts:
-  #   - starkdomain.me
-  #   secretName: certificate-secret
+  tls:
+  - hosts:
+    - starkdomain.me
+    secretName: certificate-secret
   rules:
   - host: "starkdomain.me"
     http:
