@@ -1,0 +1,6 @@
+- name: Running Playbook
+  gather_facts: true
+  hosts: localhost
+  roles:
+    - role: delete
+      tage: delete

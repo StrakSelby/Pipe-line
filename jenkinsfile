@@ -5,18 +5,35 @@ pipeline {
             label 'Node1'
         }
     }
+    parameters{
+        choices(name: 'ACTION', choices:['deploy', 'delete'], description: 'Choose the action to perform: ' )
+    }
     stages {
-        stage('Execute Ansible Playbook') {
+        stage('Deploy to kubernetes cluster') {
             steps {
-                echo 'Running playbook.......'
-                ansiblePlaybook (
-                    credentialsId: 'ffd31fac-a855-4b38-8cb8-241d49f9944d',
-                    disableHostKeyChecking: true,
-                    installation: 'Ansible',
-                    inventory: 'Ansible/inventory.k8s.yml',
-                    playbook: 'Ansible/playbook.yml',
-                    colorized: true
-                )
+                script{
+                    if(params.ACTION == 'deploy')
+                    echo 'Deploying.......'
+                    ansiblePlaybook (
+                        credentialsId: 'ffd31fac-a855-4b38-8cb8-241d49f9944d',
+                        disableHostKeyChecking: true,
+                        installation: 'Ansible',
+                        inventory: 'Ansible/inventory.k8s.yml',
+                        playbook: 'Ansible/deploy_playbook.yml',
+                        colorized: true
+                    )
+                    else if (params.ACTION == 'delete'){
+                    echo 'Deploying.......'
+                    ansiblePlaybook (
+                        credentialsId: 'ffd31fac-a855-4b38-8cb8-241d49f9944d',
+                        disableHostKeyChecking: true,
+                        installation: 'Ansible',
+                        inventory: 'Ansible/inventory.k8s.yml',
+                        playbook: 'Ansible/delete_playbook.yml',
+                        colorized: true
+                    )
+                    }
+                } 
             }
         }
     }
