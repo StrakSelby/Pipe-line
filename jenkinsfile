@@ -21,10 +21,10 @@ pipeline {
                             inventory: 'Ansible/inventory.k8s.yml',
                             playbook: 'Ansible/deploy_playbook.yml',
                             colorized: true
-                    )
+                        )
                     }
                     else(params.ACTION == 'delete'){
-                        echo 'Deploying.......'
+                        echo 'Delete Deployment.......'
                         ansiblePlaybook (
                             credentialsId: 'ffd31fac-a855-4b38-8cb8-241d49f9944d',
                             disableHostKeyChecking: true,
@@ -32,7 +32,7 @@ pipeline {
                             inventory: 'Ansible/inventory.k8s.yml',
                             playbook: 'Ansible/delete_playbook.yml',
                             colorized: true
-                    )
+                        )
                     }
                 } 
             }

@@ -1,0 +1,19 @@
+prometheus:
+  service:
+    type: NodePort
+  prometheusSpec:
+    serviceMonitorSelector: {}
+    podMonitorSelector: {}
+
+grafana:
+  service:
+    type: NodePort
+
+kubelet:
+  enabled: true
+
+nodeExporter:
+  enabled: true
+
+alertmanager:
+  enabled: true

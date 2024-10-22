@@ -51,3 +51,24 @@ openssl x509 -req -sha256 -days 365 -in tls.csr -signkey tls.key -out tls.crt
 cat /path/to/tls.crt | base64
 cat /path/to/tls.key | base64
 ```
+## Adding the Helm Repository
+```
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+```
+## install the kube-prometheus-stack using Helm
+```
+helm upgrade --install kube-prometheus-stack prometheus-community/kube-prometheus-stack -f custom-values.yml -n ingress-nginx
+helm delete kube-prometheus-stack -n ingress-nginx
+```
+## Access Prometheus and Grafana
+```
+http://<PUBLIC-IP>:30090 -> Prometheus
+http://<PUBLIC-IP>:31468 -> Grafana
+```
+## Grafana admin user and password
+```
+kubectl get secret --namespace default kube-prometheus-stack-grafana -o jsonpath="{.data.admin-user}" | base64 --decode ; echo admin
+kubectl get secret --namespace default kube-prometheus-stack-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo prom-operator
+```
+
