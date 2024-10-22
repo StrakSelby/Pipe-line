@@ -1,11 +1,11 @@
-- name: Remove nginx service
-  kubernetes.core.k8s:
-    state: absent
-    api_version: v1
-    kind: Service
-    namespace: ingress-nginx
-    name: "{{ nginx_svc }}"
-  tags: nginx-svc
+# - name: Remove nginx service
+#   kubernetes.core.k8s:
+#     state: absent
+#     api_version: v1
+#     kind: Service
+#     namespace: ingress-nginx
+#     name: "{{ nginx_svc }}"
+#   tags: nginx-svc
 
 - name: Remove mariadb service
   kubernetes.core.k8s:

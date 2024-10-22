@@ -19,12 +19,12 @@
     namespace: ingress-nginx
   tags: mariadb-secret
 
-- name: Deploy nginx configmap 
-  kubernetes.core.k8s:
-    state: present 
-    src: "{{ nginx_configmap }}"
-    namespace: ingress-nginx
-  tags: nginx-configmap 
+# - name: Deploy nginx configmap 
+#   kubernetes.core.k8s:
+#     state: present 
+#     src: "{{ nginx_configmap }}"
+#     namespace: ingress-nginx
+#   tags: nginx-configmap 
 
 - name: Deploy wordpress configmap 
   kubernetes.core.k8s:

@@ -1,11 +1,11 @@
-- name: Delete nginx Deployment from namespace
-  kubernetes.core.k8s:
-    api_version: apps/v1
-    namespace: ingress-nginx
-    kind: Deployment
-    name: "{{ nginx }}"
-    state: absent
-  tags: delete_nginx
+# - name: Delete nginx Deployment from namespace
+#   kubernetes.core.k8s:
+#     api_version: apps/v1
+#     namespace: ingress-nginx
+#     kind: Deployment
+#     name: "{{ nginx }}"
+#     state: absent
+#   tags: delete_nginx
 
 - name: Delete mariadb Deployment from namespace
   kubernetes.core.k8s:

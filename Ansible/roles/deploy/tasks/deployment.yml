@@ -1,16 +1,16 @@
-- name: Deploy ingress
+- name: Deploy ingress controller
   kubernetes.core.k8s:
     state: present 
     src: "{{ deploy_ingress }}"
     namespace: ingress-nginx
   tags: deploy-ingress
 
-- name: Deploy nginx to cluster
-  kubernetes.core.k8s:
-    state: present
-    src: "{{ deploy_nginx }}"
-    namespace: ingress-nginx
-  tags: deploy-nginx
+# - name: Deploy nginx to cluster
+#   kubernetes.core.k8s:
+#     state: present
+#     src: "{{ deploy_nginx }}"
+#     namespace: ingress-nginx
+#   tags: deploy-nginx
 
 - name: Deploy wordpress to cluster
   kubernetes.core.k8s:
@@ -25,3 +25,10 @@
     src: "{{ deploy_mariadb }}"
     namespace: ingress-nginx
   tags: deploy-mariadb
+
+- name: Deploy ingress config 
+  kubernetes.core.k8s:
+    state: present 
+    src: "{{ ingress_config }}"
+    namespace: ingress-nginx
+  tags: deploy-ingress-config

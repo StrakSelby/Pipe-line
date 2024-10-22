@@ -1,7 +1,8 @@
 deploy_nginx: /home/jenkins/workspace/Deployment/kubernetes/deployment/nginx-deployment.yml
 deploy_wordpress: /home/jenkins/workspace/Deployment/kubernetes/deployment/wordpress-deployment.yml
 deploy_mariadb: /home/jenkins/workspace/Deployment/kubernetes/deployment/mariadb-deployment.yml
-deploy_ingress: /home/jenkins/workspace/Deployment/kubernetes/deployment/ingress-deployment.yml
+ingress_config: /home/jenkins/workspace/Deployment/kubernetes/deployment/ingress-deployment.yml
+deploy_ingress: https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.0/deploy/static/provider/cloud/deploy.yaml
 
 nginx_svc: nginx-service
 wordpress_svc: wordpress-service

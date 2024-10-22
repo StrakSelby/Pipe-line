@@ -1,11 +1,11 @@
-- name: Delete nginx_configmap from namespace
-  kubernetes.core.k8s:
-    api_version: v1
-    namespace: ingress-nginx
-    kind: ConfigMap
-    name: "{{ nginx_configmap }}"
-    state: absent
-  tags: delete_nginx_configmap
+# - name: Delete nginx_configmap from namespace
+#   kubernetes.core.k8s:
+#     api_version: v1
+#     namespace: ingress-nginx
+#     kind: ConfigMap
+#     name: "{{ nginx_configmap }}"
+#     state: absent
+#   tags: delete_nginx_configmap
 
 - name: Delete wordpress_configmap from namespace
   kubernetes.core.k8s:
