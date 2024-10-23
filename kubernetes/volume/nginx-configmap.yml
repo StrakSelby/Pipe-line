@@ -1,3 +1,4 @@
+#Using ingress controller instead !!!!!
 apiVersion: v1
 kind: ConfigMap
 metadata:

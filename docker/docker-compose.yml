@@ -33,11 +33,24 @@ services:
     networks:
       - jenkins
     restart: on-failure
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    expose:
+      - 3000
+    ports:
+      - '3000:3000'
+    volumes:
+      - grafana-storage:/var/lib/grafana 
+    networks:
+      - jenkins
+    restart: on-failure
 
 volumes:
   jenkins-data:
   jenkins-docker-certs:
   prometheus-data:
+  grafana-storage:
 
 networks:
   jenkins:
