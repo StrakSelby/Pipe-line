@@ -91,6 +91,7 @@ helm upgrade kube-prometheus-stack prometheus-community/kube-prometheus-stack -f
 ```
 ## Apply the alert rule and test the rule 
 ```
-kubectl apply -f alert-rules.yaml
-kubectl run nginx-pod --image=nginx:lates3
+kubectl apply -f alert-rules.yml
+kubectl get prometheusrules -n ingress-nginx
+kubectl run nginx-pod --image=nginx:lates3 --namespace=ingress-nginx
 ```
