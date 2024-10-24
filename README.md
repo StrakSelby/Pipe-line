@@ -71,12 +71,26 @@ helm delete kube-prometheus-stack -n ingress-nginx
 ```
 ## Access Prometheus and Grafana
 ```
-http://<PUBLIC-IP>:30090 -> Prometheus
-http://<PUBLIC-IP>:<Random-Port> -> Grafana
+http://<PUBLIC-IP or DOMAIN-NAME>:30090 -> Prometheus
+http://<PUBLIC-IP or DOMAIN-NAME>:<Random-Port> -> Grafana
 ```
 ## Grafana admin user and password
 ```
 kubectl get secret --namespace ingress-nginx kube-prometheus-stack-grafana -o jsonpath="{.data.admin-user}" | base64 --decode ; echo admin
 kubectl get secret --namespace ingress-nginx kube-prometheus-stack-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo prom-operator
 ```
-
+## Create telegram bot for alert message 
+```
+1.Search for the "BotFather" in Telegram.
+2.Start a chat and use the command /newbot to create a new bot.
+3.name your bot and get the token. -> https://api.telegram.org/bot<YOUR_BOT_TOKEN>/getUpdates
+```
+## Redeploy helm for alert message
+```
+helm upgrade kube-prometheus-stack prometheus-community/kube-prometheus-stack -f alert-manager.yml -n ingress-nginx --reuse-values
+```
+## Apply the alert rule and test the rule 
+```
+kubectl apply -f alert-rules.yaml
+kubectl run nginx-pod --image=nginx:lates3
+```
