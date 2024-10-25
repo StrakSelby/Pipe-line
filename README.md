@@ -19,6 +19,13 @@ echo "enable_plugins = kubernetes.core.k8s" >> /etc/ansible/ansible.cfg
 apt update
 apt install fontconfig openjdk-17-jre
 ```
+## Setup minikube for local development
+```
+minikube start --driver=virtualbox --cpus=4 --memory=4096
+minikube addons enable ingress
+minikube ip 
+echo "minikubeip hostname" | sudo tee -a /etc/hosts
+```
 ## Setup kubectl for Agent
 ```
 snap install kubectl --classic
