@@ -26,6 +26,20 @@ minikube addons enable ingress
 minikube ip 
 echo "minikubeip hostname" | sudo tee -a /etc/hosts
 ```
+## Setup Vagrant
+```
+https://app.vagrantup.com/boxes/search
+touch Vagrantfile
+vagrant box add ubuntu/bionic64
+vagrant box list | grep bionic64
+vagrant.exe init ubuntu/bionic64 --force
+vagrant.exe up
+vagrant.exe halt
+vagrant plugin install vagrant-vbguest
+vagrant.exe reload
+vagrant.exe destroy 
+vagrant.exe ssh
+```
 ## Setup kubectl for Agent
 ```
 snap install kubectl --classic
@@ -86,19 +100,4 @@ http://<PUBLIC-IP or DOMAIN-NAME>:<Random-Port> -> Grafana
 kubectl get secret --namespace ingress-nginx kube-prometheus-stack-grafana -o jsonpath="{.data.admin-user}" | base64 --decode ; echo admin
 kubectl get secret --namespace ingress-nginx kube-prometheus-stack-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo prom-operator
 ```
-## Create telegram bot for alert message 
-```
-1.Search for the "BotFather" in Telegram.
-2.Start a chat and use the command /newbot to create a new bot.
-3.name your bot and get the token. -> https://api.telegram.org/bot<YOUR_BOT_TOKEN>/getUpdates
-```
-## Redeploy helm for alert message
-```
-helm upgrade kube-prometheus-stack prometheus-community/kube-prometheus-stack -f alert-manager.yml -n ingress-nginx --reuse-values
-```
-## Apply the alert rule and test the rule 
-```
-kubectl apply -f alert-rules.yml
-kubectl get prometheusrules -n ingress-nginx
-kubectl run nginx-pod --image=nginx:lates3 --namespace=ingress-nginx
-```
+

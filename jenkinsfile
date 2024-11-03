@@ -15,7 +15,7 @@ pipeline {
                     if(params.ACTION == 'deploy'){
                         echo 'Deploying.......'
                         ansiblePlaybook (
-                            credentialsId: 'ffd31fac-a855-4b38-8cb8-241d49f9944d',
+                            credentialsId: 'e15c9a5a-fb01-42bd-a959-012ea86d043f',
                             disableHostKeyChecking: true,
                             installation: 'Ansible',
                             inventory: 'Ansible/inventory.k8s.yml',
@@ -26,7 +26,7 @@ pipeline {
                     else(params.ACTION == 'delete'){
                         echo 'Delete Deployment.......'
                         ansiblePlaybook (
-                            credentialsId: 'ffd31fac-a855-4b38-8cb8-241d49f9944d',
+                            credentialsId: 'e15c9a5a-fb01-42bd-a959-012ea86d043f',
                             disableHostKeyChecking: true,
                             installation: 'Ansible',
                             inventory: 'Ansible/inventory.k8s.yml',
@@ -37,10 +37,5 @@ pipeline {
                 } 
             }
         }
-        // stage('Test deployment'){
-        //     steps{
-                
-        //     }
-        // }
     }
 }

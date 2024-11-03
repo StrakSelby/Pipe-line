@@ -1,0 +1,23 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/bionic64"
+
+  config.vm.network "public_network", bridge: "Intel(R) WIFI 6 AX201 160MHz"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.cpus = 1
+    vb.memory = "1024"
+  end
+
+  config.vm.provision "shell", inline: <<-SHELL
+    sudo apt-get update
+    sudo apt-get install software-properties-common -y
+    sudo add-apt-repository --yes --update ppa:ansible/ansible
+    sudo apt-get update 
+    sudo apt-get install -y ansible
+    sudo apt-get install python3-pip -y
+    sudo pip3 install kubernetes
+    echo "[inventory]" | sudo tee -a /etc/ansible/ansible.cfg
+    echo "enable_plugins = kubernetes.core.k8s" | sudo tee -a /etc/ansible/ansible.cfg
+    sudo apt-get install fontconfig openjdk-17-jre -y
+  SHELL
+end
