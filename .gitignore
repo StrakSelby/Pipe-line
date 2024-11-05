@@ -5,3 +5,5 @@ docker/Jenkins_docker/jenkins_master-dockerfile
 Makefile
 
 README.md
+
+vagrant/linux-vm
