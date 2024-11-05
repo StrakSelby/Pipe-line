@@ -6,4 +6,5 @@ Makefile
 
 README.md
 
-vagrant/linux-vm
+vagrant/linux-vm/
+
