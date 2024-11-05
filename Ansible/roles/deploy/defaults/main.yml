@@ -14,3 +14,5 @@ mariadb_secret: /home/jenkins/workspace/Deployment/kubernetes/volume/mariadb-sec
 nginx_configmap: /home/jenkins/workspace/Deployment/kubernetes/volume/nginx-configmap.yml
 wordpress_configmap: /home/jenkins/workspace/Deployment/kubernetes/volume/wordpress-configmap.yml
 certificate_secret: /home/jenkins/workspace/Deployment/kubernetes/volume/certificate-secret.yml
+
+custom_value: /home/jenkins/workspace/Deployment/kubernetes/helm/custom-values.yml

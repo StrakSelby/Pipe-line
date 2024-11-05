@@ -1,7 +1,8 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/bionic64"
 
-  config.vm.network "public_network", bridge: "Intel(R) WIFI 6 AX201 160MHz"
+  #config.vm.network "public_network", bridge: "Intel(R) WIFI 6 AX201 160MHz"
+  config.vm.network "public_network", bridge: "wlp4s0"
 
   config.vm.provider "virtualbox" do |vb|
     vb.cpus = 1
@@ -19,5 +20,8 @@ Vagrant.configure("2") do |config|
     echo "[inventory]" | sudo tee -a /etc/ansible/ansible.cfg
     echo "enable_plugins = kubernetes.core.k8s" | sudo tee -a /etc/ansible/ansible.cfg
     sudo apt-get install fontconfig openjdk-17-jre -y
+    sudo apt install -y snap
+    sudo snap install doctl
+    sudo snap install kubectl --classic 
   SHELL
 end

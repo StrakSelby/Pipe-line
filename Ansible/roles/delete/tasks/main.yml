@@ -9,3 +9,7 @@
 - name: Delete volume 
   ansible.builtin.import_tasks: delete-volume.yml
   tags: del_vol
+
+- name: Delete helm deploy 
+  ansible.builtin.import_tasks: delete-prometheus_helm.yml
+  tags: del_helm 
