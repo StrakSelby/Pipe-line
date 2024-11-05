@@ -4,7 +4,11 @@
 [    0.000000]   Intel GenuineIntel
 [    0.000000]   AMD AuthenticAMD
 [    0.000000]   Centaur CentaurHauls
-[    0.000000] x86/fpu: x87 FPU will use FXSAVE
+[    0.000000] x86/fpu: Supporting XSAVE feature 0x001: 'x87 floating point registers'
+[    0.000000] x86/fpu: Supporting XSAVE feature 0x002: 'SSE registers'
+[    0.000000] x86/fpu: Supporting XSAVE feature 0x004: 'AVX registers'
+[    0.000000] x86/fpu: xstate_offset[2]:  576, xstate_sizes[2]:  256
+[    0.000000] x86/fpu: Enabled xstate features 0x7, context size is 832 bytes, using 'standard' format.
 [    0.000000] e820: BIOS-provided physical RAM map:
 [    0.000000] BIOS-e820: [mem 0x0000000000000000-0x000000000009fbff] usable
 [    0.000000] BIOS-e820: [mem 0x000000000009fc00-0x000000000009ffff] reserved
@@ -30,7 +34,7 @@
 [    0.000000] ACPI: RSDP 0x00000000000E0000 000024 (v02 VBOX  )
 [    0.000000] ACPI: XSDT 0x000000003FFF0030 00003C (v01 VBOX   VBOXXSDT 00000001 ASL  00000061)
 [    0.000000] ACPI: FACP 0x000000003FFF00F0 0000F4 (v04 VBOX   VBOXFACP 00000001 ASL  00000061)
-[    0.000000] ACPI: DSDT 0x000000003FFF0610 002353 (v02 VBOX   VBOXBIOS 00000002 INTL 20100528)
+[    0.000000] ACPI: DSDT 0x000000003FFF0610 002353 (v02 VBOX   VBOXBIOS 00000002 INTL 20230628)
 [    0.000000] ACPI: FACS 0x000000003FFF0200 000040
 [    0.000000] ACPI: FACS 0x000000003FFF0200 000040
 [    0.000000] ACPI: APIC 0x000000003FFF0240 000054 (v02 VBOX   VBOXAPIC 00000001 ASL  00000061)
@@ -39,6 +43,7 @@
 [    0.000000] ACPI: Reserving DSDT table memory at [mem 0x3fff0610-0x3fff2962]
 [    0.000000] ACPI: Reserving FACS table memory at [mem 0x3fff0200-0x3fff023f]
 [    0.000000] ACPI: Reserving FACS table memory at [mem 0x3fff0200-0x3fff023f]
+[    0.000000] ACPI: Reserving APIC table memory at [mem 0x3fff0240-0x3fff0293]
 [    0.000000] ACPI: Reserving APIC table memory at [mem 0x3fff0240-0x3fff0293]
 [    0.000000] ACPI: Reserving SSDT table memory at [mem 0x3fff02a0-0x3fff060b]
 [    0.000000] No NUMA configuration found
@@ -61,9 +66,11 @@
 [    0.000000] Initmem setup node 0 [mem 0x0000000000001000-0x000000003ffeffff]
 [    0.000000] ACPI: PM-Timer IO Port: 0x4008
 [    0.000000] IOAPIC[0]: apic_id 1, version 32, address 0xfec00000, GSI 0-23
+[    0.000000] IOAPIC[0]: apic_id 1, version 32, address 0xfec00000, GSI 0-23
 [    0.000000] ACPI: INT_SRC_OVR (bus 0 bus_irq 0 global_irq 2 dfl dfl)
 [    0.000000] ACPI: INT_SRC_OVR (bus 0 bus_irq 9 global_irq 9 low level)
 [    0.000000] Using ACPI (MADT) for SMP configuration information
+[    0.000000] smpboot: Allowing 1 CPUs, 0 hotplug CPUs
 [    0.000000] smpboot: Allowing 1 CPUs, 0 hotplug CPUs
 [    0.000000] PM: Registered nosave memory: [mem 0x00000000-0x00000fff]
 [    0.000000] PM: Registered nosave memory: [mem 0x0009f000-0x0009ffff]
@@ -72,6 +79,8 @@
 [    0.000000] e820: [mem 0x40000000-0xfebfffff] available for PCI devices
 [    0.000000] Booting paravirtualized kernel on KVM
 [    0.000000] clocksource: refined-jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645519600211568 ns
+[    0.000000] setup_percpu: NR_CPUS:8192 nr_cpumask_bits:1 nr_cpu_ids:1 nr_node_ids:1
+[    0.000000] percpu: Embedded 50 pages/cpu s167936 r8192 d28672 u2097152
 [    0.000000] setup_percpu: NR_CPUS:8192 nr_cpumask_bits:1 nr_cpu_ids:1 nr_node_ids:1
 [    0.000000] percpu: Embedded 50 pages/cpu s167936 r8192 d28672 u2097152
 [    0.000000] PV qspinlock hash table entries: 256 (order: 0, 4096 bytes)
@@ -83,7 +92,10 @@
 [    0.000000] ftrace: allocating 39508 entries in 155 pages
 [    0.004000] Hierarchical RCU implementation.
 [    0.004000] 	RCU restricting CPUs from NR_CPUS=8192 to nr_cpu_ids=1.
+[    0.004000] 	RCU restricting CPUs from NR_CPUS=8192 to nr_cpu_ids=1.
 [    0.004000] 	Tasks RCU enabled.
+[    0.004000] RCU: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=1
+[    0.004000] NR_IRQS: 524544, nr_irqs: 256, preallocated irqs: 16
 [    0.004000] RCU: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=1
 [    0.004000] NR_IRQS: 524544, nr_irqs: 256, preallocated irqs: 16
 [    0.004000] random: crng init done
@@ -405,6 +417,12 @@ Welcome to [1mUbuntu 18.04.6 LTS[0m!
          Mounting Huge Pages File System...
          Starting Set the console keyboard layout...
          Mounting POSIX Message Queue File System...
+[[0;32m  OK  [0m] Reached target User and Group Name Lookups.
+         Starting Uncomplicated firewall...
+         Mounting Huge Pages File System...
+[[0;32m  OK  [0m] Set up automount Arbitrary Executab…rmats File System Automount Point.
+[[0;32m  OK  [0m] Reached target Mounted snaps.
+[[0;32m  OK  [0m] Started Forward Password Requests to Wall Directory Watch.
          Starting Monitoring of LVM2 mirrors…ng dmeventd or progress polling...
          Starting File System Check on Root Device...
          Starting Journal Service...
@@ -454,6 +472,7 @@ Welcome to [1mUbuntu 18.04.6 LTS[0m!
 [[0;32m  OK  [0m] Reached target Local File Systems (Pre).
 [[0;32m  OK  [0m] Reached target Local File Systems.
          Starting ebtables ruleset management...
+         Starting ebtables ruleset management...
          Starting Commit a transient machine-id on disk...
          Starting AppArmor initialization...
          Starting Set console font and keymap...
@@ -472,6 +491,7 @@ Welcome to [1mUbuntu 18.04.6 LTS[0m!
 [[0;32m  OK  [0m] Started AppArmor initialization.
          Starting Load AppArmor profiles managed internally by snapd...
          Starting Initial cloud-init job (pre-networking)...
+         Starting Initial cloud-init job (pre-networking)...
 [[0;32m  OK  [0m] Started Load AppArmor profiles managed internally by snapd.
 [[0;32m  OK  [0m] Started Set console font and keymap.
 [   16.788569] cloud-init[769]: Cloud-init v. 23.1.2-0ubuntu0~18.04.1 running 'init-local' at Mon, 04 Nov 2024 16:22:42 +0000. Up 16.09 seconds.
@@ -482,8 +502,8 @@ Welcome to [1mUbuntu 18.04.6 LTS[0m!
          Starting Network Name Resolution...
          Starting Wait for Network to be Configured...
 [[0;32m  OK  [0m] Started Network Name Resolution.
-[[0;32m  OK  [0m] Reached target Network.
 [[0;32m  OK  [0m] Reached target Host and Network Name Lookups.
+[[0;32m  OK  [0m] Reached target Network.
 [[0;32m  OK  [0m] Started Wait for Network to be Configured.
          Starting Initial cloud-init job (metadata service crawler)...
 [   19.263719] cloud-init[895]: Cloud-init v. 23.1.2-0ubuntu0~18.04.1 running 'init' at Mon, 04 Nov 2024 16:22:45 +0000. Up 19.08 seconds.
@@ -612,7 +632,6 @@ cloud-init         Starting Hold until boot process finishes up...
 [   21.853952] cloud-init[895]: |    ... S+  *.o  |
 [   21.889173] cloud-init[895]: [[0;32m  OK  [0m] Started Terminate Plymouth Boot Screen.
 [[0;32m  OK  [0m] Started Hold until boot process finishes up.
-         Starting Set console scheme...
 [[0;32m  OK  [0m] Started Serial Getty on ttyS0.
          Starting Authorization Manager...
 |   ... .  o  B   |
@@ -659,7 +678,8 @@ cloud-init[895]: +----[SHA256]-----+
 [[0;32m  OK  [0m] Started Session 1 of user vagrant.
          Starting User Manager for UID 1000...
 [[0;32m  OK  [0m] Started User Manager for UID 1000.
-
+
+
 Ubuntu 18.04.6 LTS ubuntu-bionic ttyS0
 
 ubuntu-bionic login: [   30.213455] cloud-init[1386]: Cloud-init v. 23.1.2-0ubuntu0~18.04.1 running 'modules:config' at Mon, 04 Nov 2024 16:22:54 +0000. Up 28.55 seconds.
@@ -679,7 +699,9 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDmBN9g4YrgK+Rl6ET0nvFhLWcZk/kt+w8d7zO8G/G+
 -----END SSH HOST KEY KEYS-----
 [   31.986401] cloud-init[1542]: Cloud-init v. 23.1.2-0ubuntu0~18.04.1 running 'modules:final' at Mon, 04 Nov 2024 16:22:57 +0000. Up 31.50 seconds.
 [   32.011664] cloud-init[1542]: Cloud-init v. 23.1.2-0ubuntu0~18.04.1 finished at Mon, 04 Nov 2024 16:22:58 +0000. Datasource DataSourceNoCloud [seed=/dev/sdb][dsmode=net].  Up 31.97 seconds
-[[0;32m  OK  [0m] Stopped Unattended Upgrades Shutdown.
+
+
+[[0;32m  OK  [0m] Stopped Unattended Upgrades Shutdown.
          Stopping User Manager for UID 1000...
          Stopping Session 8 of user vagrant.
          Stopping Availability of block devices...

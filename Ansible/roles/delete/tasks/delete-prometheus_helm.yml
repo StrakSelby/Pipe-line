@@ -1,0 +1,6 @@
+- name: Delete prometheus stack deployment
+  kubernetes.core.helm:
+    name: prometheus_stack
+    release_namespace: ingress-nginx
+    state: absent
+  tags: delete_helm
