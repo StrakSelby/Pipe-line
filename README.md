@@ -13,6 +13,7 @@ apt install python3-pip -y
 pip3 install kubernetes
 echo "[inventory]" >> /etc/ansible/ansible.cfg
 echo "enable_plugins = kubernetes.core.k8s" >> /etc/ansible/ansible.cfg
+ansible-galaxy collection install kubernetes.core
 ```
 ## Setup java jdk for Agent
 ```
