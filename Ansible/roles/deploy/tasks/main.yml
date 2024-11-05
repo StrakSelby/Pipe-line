@@ -7,5 +7,5 @@
 - name: Deploy to kubernetes cluster
   ansible.builtin.import_tasks: deployment.yml
 
-- name: Deploy prometheus helm 
-  ansible.builtin.import_tasks: deploy-prometheus_helm.yml 
+# - name: Deploy prometheus helm 
+#   ansible.builtin.import_tasks: deploy-prometheus_helm.yml 
