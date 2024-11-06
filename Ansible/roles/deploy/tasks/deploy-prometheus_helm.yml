@@ -11,9 +11,10 @@
     chart_ref: prometheus-community/kube-prometheus-stack
     values_file:
       - "{{ custom_value }}"
-    tags: deploy_helm
+  tags: deploy_helm
 
 - name: Gather information about prometheus 
   kubernetes.core.helm_info:
     name: prometheus_stack
     release_namespace: ingress-nginx
+  tags: deploy_helm
