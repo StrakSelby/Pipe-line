@@ -16,3 +16,5 @@ wordpress_configmap: /home/jenkins/workspace/Deployment/kubernetes/volume/wordpr
 certificate_secret: /home/jenkins/workspace/Deployment/kubernetes/volume/certificate-secret.yml
 
 custom_value: /home/jenkins/workspace/Deployment/kubernetes/helm/custom-values.yml
+
+controller-source: /home/jenkins/workspace/Deployment/kubernetes/deployment/controller_source.yml
