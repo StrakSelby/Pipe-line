@@ -9,7 +9,7 @@
     name: prometheus_stack 
     release_namespace: ingress-nginx
     chart_ref: prometheus-community/kube-prometheus-stack
-    values_file:
+    values_files:
       - "{{ custom_value }}"
   tags: deploy_helm
 
