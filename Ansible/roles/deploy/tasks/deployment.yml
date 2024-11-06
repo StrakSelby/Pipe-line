@@ -7,7 +7,7 @@
 
 - name: wait until the controller source is running 
   pause:
-    second: 25
+    seconds: 25
   tags: deploy-ingress
 
 - name: Deploy ingress controller
