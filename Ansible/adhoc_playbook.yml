@@ -1,0 +1,8 @@
+- name: Running adhoc command
+  gather_facts: true
+  hosts: localhost
+  roles:
+    - name: deploy
+      tags: deploy
+    - name: delete
+      tags: delete

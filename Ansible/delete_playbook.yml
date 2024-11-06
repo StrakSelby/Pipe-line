@@ -3,4 +3,4 @@
   hosts: localhost
   roles:
     - role: delete
-      tage: delete
+      tags: delete
