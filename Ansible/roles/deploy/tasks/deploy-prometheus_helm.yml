@@ -6,7 +6,7 @@
 
 - name: Deploy prometheus stack with custom value file
   kubernetes.core.helm:
-    name: prometheus_stack 
+    name: prometheus-stack 
     release_namespace: ingress-nginx
     chart_ref: prometheus-community/kube-prometheus-stack
     values_files:
