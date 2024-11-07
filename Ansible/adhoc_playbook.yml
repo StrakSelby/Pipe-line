@@ -4,5 +4,5 @@
   roles:
     - role: deploy
       tags: deploy_adhoc
-    - role: delete
-      tags: delete_adhoc
+    # - role: delete
+    #   tags: delete_adhoc
