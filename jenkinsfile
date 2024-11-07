@@ -4,59 +4,56 @@ pipeline {
             label 'Node1'
         }
     }
-    parameters{
-        choice(name: 'ACTION', choices:['deploy', 'delete','adhoc'])
-        string(name: 'ADHOC_COMMAND', defaultValue: '' , description: 'Enter adhoc command: ')
+    parameters {
+        choice(name: 'ACTION', choices: ['deploy', 'delete', 'adhoc'])
+        string(name: 'ADHOC_COMMAND', defaultValue: '', description: 'Enter adhoc command: ')
     }
     stages {
         stage('Deploy to kubernetes cluster') {
             when {
-                expression { return params.ACTION == 'deploy'}
+                expression { return params.ACTION == 'deploy' }
             }
             steps {
-                script{
-                        echo 'Deploying.......'
-                        ansiblePlaybook (
-                            // credentialsId: 'a86a4b63-4410-45e8-b78e-225a9ca0a811',
-                            // disableHostKeyChecking: true,
-                            installation: 'Ansible',
-                            inventory: 'Ansible/inventory.k8s.yml',
-                            playbook: 'Ansible/deploy_playbook.yml',
-                            colorized: true
-                        )
-                }
-            }
-        }
-        stage('Delete Deployment'){
-            when {
-                expression { return params.ACTION == 'delete' }
-            }
-            steps{
-                script{
-                    echo 'Deleting.......'
+                script {
+                    echo 'Deploying.......'
                     ansiblePlaybook(
-                            installation: 'Ansible',
-                            inventory: 'Ansible/inventory.k8s.yml',
-                            playbook: 'Ansible/deploy_playbook.yml',
-                            colorized: true
+                        installation: 'Ansible',
+                        inventory: 'Ansible/inventory.k8s.yml',
+                        playbook: 'Ansible/deploy_playbook.yml',
+                        colorized: true
                     )
                 }
             }
         }
-        stage('Run adhoc command'){
-            when{
-                expression { return params.ACTION == 'adhoc'}
+        stage('Delete Deployment') {
+            when {
+                expression { return params.ACTION == 'delete' }
             }
-            step{
-                script{
-                    if (params.ADHOC_COMMAND){
-                        echo 'running adhoc command ${params.ADHOC_COMMAND}'
+            steps {
+                script {
+                    echo 'Deleting.......'
+                    ansiblePlaybook(
+                        installation: 'Ansible',
+                        inventory: 'Ansible/inventory.k8s.yml',
+                        playbook: 'Ansible/deploy_playbook.yml',  // Modify if you need a different playbook
+                        colorized: true
+                    )
+                }
+            }
+        }
+        stage('Run adhoc command') {
+            when {
+                expression { return params.ACTION == 'adhoc' }
+            }
+            steps {
+                script {
+                    if (params.ADHOC_COMMAND?.trim()) {
+                        echo "Running adhoc command: ${params.ADHOC_COMMAND}"
                         sh """
-                            ansible-playbook -i Ansible/inventory.k8s.yml -e "adhoc_command=${params.ADHOC_COMMAND}" -e "action=adhoc" Ansible/
+                            ansible-playbook -i Ansible/inventory.k8s.yml -e "adhoc_command=${params.ADHOC_COMMAND}" -e "action=adhoc" Ansible/adhoc_playbook.yml
                         """
-                    }
-                    else{
-                        error "Invalid ansible adhoc command !!!!!!"
+                    } else {
+                        error "No valid adhoc command provided!"
                     }
                 }
             }
