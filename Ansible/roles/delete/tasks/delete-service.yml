@@ -31,14 +31,24 @@
     api_version: v1 
     kind: Service 
     namespace: ingress-nginx
-    name: "{{ controller }}"
+  loop:
+    - ingress-nginx-controller 
+    - ingress-nginx-controller-admission  
   tags: controller-svc
 
-- name: Remove ingress controller-admission
+- name: Remove prometheus svc
   kubernetes.core.k8s:
     state: absent
     api_version: v1
-    kind: Service
+    kind: Service 
     namespace: ingress-nginx
-    name: "{{ controller_admission }}"
-  tags: controller-admission
+  loop:
+    - prometheus-operated 
+    - prometheus-stack-grafana
+    - prometheus-stack-kube-prom-alertmanager
+    - prometheus-stack-kube-prom-operator
+    - prometheus-stack-kube-prom-prometheus 
+    - prometheus-stack-kube-state-metrics 
+    - prometheus-stack-prometheus-node-exporter
+    - alertmanager-operated 
+  tags: prometheus-svc
