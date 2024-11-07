@@ -50,7 +50,7 @@ pipeline {
                     if (params.ADHOC_COMMAND) {
                         echo "Running adhoc command: ${params.ADHOC_COMMAND}"
                         sh """
-                            ansible-playbook -i Ansible/inventory.k8s.yml ${params.ADHOC_COMMAND} Ansible/adhoc_playbook.yml
+                            ansible-playbook Ansible/adhoc_playbook.yml -i Ansible/inventory.k8s.yml ${params.ADHOC_COMMAND} 
                         """
                     } else {
                         error "No valid adhoc command provided!"
