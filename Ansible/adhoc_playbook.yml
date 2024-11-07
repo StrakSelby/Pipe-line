@@ -3,6 +3,6 @@
   hosts: localhost
   roles:
     - role: deploy
-      tags: deploy
+      tags: deploy_adhoc
     - role: delete
-      tags: delete
+      tags: delete_adhoc
