@@ -11,17 +11,19 @@
   kubernetes.core.k8s:
     api_version: v1
     namespace: ingress-nginx
-    #kind: ConfigMap
-    name: "{{ wordpress_configmap }}"
+    kind: ConfigMap
     state: absent
+  loop:
+    - apache-template
+    - port-template 
   tags: delete_wordpress_configmap
 
 - name: Delete mariadb_configmap from namespace
   kubernetes.core.k8s:
     api_version: v1
     namespace: ingress-nginx
-    #kind: ConfigMap
-    name: "{{ mariadb_configmap }}"
+    kind: ConfigMap
+    name: mariadb-configmap
     state: absent
   tags: delete_mariadb_configmap
 
@@ -29,8 +31,8 @@
   kubernetes.core.k8s:
     api_version: v1
     namespace: ingress-nginx
-    #kind: PersistentVolume
-    name: "{{ mariadb_volume }}"
+    kind: PersistentVolume
+    name: mariadb-pvc 
     state: absent
   tags: delete_mariadb_volume
 
@@ -38,8 +40,8 @@
   kubernetes.core.k8s:
     api_version: v1
     namespace: ingress-nginx
-    #kind: Secret
-    name: "{{ mariadb_secret }}"
+    kind: Secret
+    name: mariadb-secret 
     state: absent
   tags: delete_mariadb_secret
 
@@ -47,7 +49,7 @@
   kubernetes.core.k8s:
     api_version: v1
     namespace: ingress-nginx
-    #kind: Secret 
-    name: "{{ certificate_secret }}"
+    kind: Secret 
+    name: certificate-secret
     state: absent
   tags: delete_certificate_secret
