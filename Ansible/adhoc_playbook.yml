@@ -2,7 +2,7 @@
   gather_facts: true
   hosts: localhost
   roles:
-    - name: deploy
+    - role: deploy
       tags: deploy
-    - name: delete
+    - role: delete
       tags: delete
