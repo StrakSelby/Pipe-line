@@ -1,7 +1,7 @@
 nginx: nginx-deployment
 wordpress: wordpress-deployment
 mariadb: mariadb-deployment
-ingress: ingress-deployment
+ingress: ingress-nginx-controller
 
 nginx_svc: nginx-service
 wordpress_svc: wordpress-service
