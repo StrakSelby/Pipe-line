@@ -12,8 +12,10 @@
     api_version: v1
     namespace: ingress-nginx
     kind: ConfigMap
-    name: "{{ wordpress_configmap }}"
     state: absent
+  loop:
+    - "{{ apache_configmap }}"
+    - "{{ port_configmap }}"
   tags: delete_wordpress_configmap
 
 - name: Delete mariadb_configmap from namespace
