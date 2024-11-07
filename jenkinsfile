@@ -35,7 +35,7 @@ pipeline {
                     ansiblePlaybook(
                         installation: 'Ansible',
                         inventory: 'Ansible/inventory.k8s.yml',
-                        playbook: 'Ansible/delete_playbook.yml',  // Modify if you need a different playbook
+                        playbook: 'Ansible/delete_playbook.yml',
                         colorized: true
                     )
                 }
@@ -47,10 +47,10 @@ pipeline {
             }
             steps {
                 script {
-                    if (params.ADHOC_COMMAND?.trim()) {
+                    if (params.ADHOC_COMMAND) {
                         echo "Running adhoc command: ${params.ADHOC_COMMAND}"
                         sh """
-                            ansible-playbook -i Ansible/inventory.k8s.yml -e "adhoc_command=${params.ADHOC_COMMAND}" -e "action=adhoc" Ansible/adhoc_playbook.yml
+                            ansible-playbook -i Ansible/inventory.k8s.yml ${params.ADHOC_COMMAND} Ansible/adhoc_playbook.yml
                         """
                     } else {
                         error "No valid adhoc command provided!"

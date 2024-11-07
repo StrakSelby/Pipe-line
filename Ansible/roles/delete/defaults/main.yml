@@ -15,10 +15,3 @@ apache_configmap: apache-template
 port_configmap: port-template 
 certificate_secret: certificate-secret
 
-# mariadb_volume: /home/jenkins/workspace/Deployment/kubernetes/volume/mariadb-volume.yml
-# mariadb_configmap: /home/jenkins/workspace/Deployment/kubernetes/volume/mariadb-configmap.yml
-# mariadb_secret: /home/jenkins/workspace/Deployment/kubernetes/volume/mariadb-secret.yml
-# nginx_configmap: /home/jenkins/workspace/Deployment/kubernetes/volume/nginx-configmap.yml
-# wordpress_configmap: /home/jenkins/workspace/Deployment/volume/wordpress-configmap.yml
-# certificate_secret: /home/jenkins/workspace/Deployment/kubernetes/volume/certificate-secret.yml
-

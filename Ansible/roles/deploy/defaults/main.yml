@@ -17,4 +17,3 @@ certificate_secret: /home/jenkins/workspace/Deployment/kubernetes/volume/certifi
 
 custom_value: /home/jenkins/workspace/Deployment/kubernetes/helm/custom-values.yml
 
-controller_source: /home/jenkins/workspace/Deployment/kubernetes/deployment/controller_source.yml
