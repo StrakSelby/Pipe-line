@@ -35,7 +35,7 @@ pipeline {
                     ansiblePlaybook(
                         installation: 'Ansible',
                         inventory: 'Ansible/inventory.k8s.yml',
-                        playbook: 'Ansible/deploy_playbook.yml',  // Modify if you need a different playbook
+                        playbook: 'Ansible/delete_playbook.yml',  // Modify if you need a different playbook
                         colorized: true
                     )
                 }
