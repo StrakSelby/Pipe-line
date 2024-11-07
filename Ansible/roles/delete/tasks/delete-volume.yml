@@ -7,15 +7,22 @@
 #     state: absent
 #   tags: delete_nginx_configmap
 
-- name: Delete wordpress_configmap from namespace
+- name: Delete apache_configmap from namespace
   kubernetes.core.k8s:
     api_version: v1
     namespace: ingress-nginx
     kind: ConfigMap
-  loop:
-    - apache_template
-    - port_template 
-  state: absent
+    state: absent
+    name: apache-template 
+  tags: delete_wordpress_configmap
+
+- name: Delete port_configmap from namespace
+  kubernetes.core.k8s:
+    api_version: v1
+    namespace: ingress-nginx
+    kind: ConfigMap
+    state: absent
+    name: port-template 
   tags: delete_wordpress_configmap
 
 - name: Delete mariadb_configmap from namespace
