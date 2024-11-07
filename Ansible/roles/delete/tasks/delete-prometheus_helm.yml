@@ -1,4 +1,6 @@
 - name: Delete prometheus stack deployment
-  ansible.builtin.command: >
-    helm delete kube-prometheus-stack -n ingress-nginx
+  kubernetes.core.helm:
+    name: prometheus-stack
+    release_namespace: ingress-nginx
+    state: absent
   tags: delete_helm

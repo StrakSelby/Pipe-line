@@ -25,30 +25,30 @@
     name: "{{ wordpress_svc }}"
   tags: wordpress-svc
 
-- name: Remove ingress controller svc 
-  kubernetes.core.k8s:
-    state: absent
-    api_version: v1 
-    kind: Service 
-    namespace: ingress-nginx
-  loop:
-    - ingress-nginx-controller 
-    - ingress-nginx-controller-admission  
-  tags: controller-svc
+# - name: Remove ingress controller svc 
+#   kubernetes.core.k8s:
+#     state: absent
+#     api_version: v1 
+#     kind: Service 
+#     namespace: ingress-nginx
+#   loop:
+#     - ingress-nginx-controller 
+#     - ingress-nginx-controller-admission  
+#   tags: controller-svc
 
-- name: Remove prometheus svc
-  kubernetes.core.k8s:
-    state: absent
-    api_version: v1
-    kind: Service 
-    namespace: ingress-nginx
-  loop:
-    - prometheus-operated 
-    - prometheus-stack-grafana
-    - prometheus-stack-kube-prom-alertmanager
-    - prometheus-stack-kube-prom-operator
-    - prometheus-stack-kube-prom-prometheus 
-    - prometheus-stack-kube-state-metrics 
-    - prometheus-stack-prometheus-node-exporter
-    - alertmanager-operated 
-  tags: prometheus-svc
+# - name: Remove prometheus svc
+#   kubernetes.core.k8s:
+#     state: absent
+#     api_version: v1
+#     kind: Service 
+#     namespace: ingress-nginx
+#   loop:
+#     - prometheus-operated 
+#     - prometheus-stack-grafana
+#     - prometheus-stack-kube-prom-alertmanager
+#     - prometheus-stack-kube-prom-operator
+#     - prometheus-stack-kube-prom-prometheus 
+#     - prometheus-stack-kube-state-metrics 
+#     - prometheus-stack-prometheus-node-exporter
+#     - alertmanager-operated 
+#   tags: prometheus-svc

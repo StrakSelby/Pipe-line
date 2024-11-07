@@ -13,7 +13,7 @@
     namespace: ingress-nginx
     kind: ConfigMap
     state: absent
-    name: apache-template 
+    name: "{{ apache_configmap }}"
   tags: delete_wordpress_configmap
 
 - name: Delete port_configmap from namespace
@@ -22,7 +22,7 @@
     namespace: ingress-nginx
     kind: ConfigMap
     state: absent
-    name: port-template 
+    name: "{{ port_configmap }}"
   tags: delete_wordpress_configmap
 
 - name: Delete mariadb_configmap from namespace
@@ -30,7 +30,7 @@
     api_version: v1
     namespace: ingress-nginx
     kind: ConfigMap
-    name: mariadb-configmap
+    name: "{{ mariadb_configmap }}"
     state: absent
   tags: delete_mariadb_configmap
 
@@ -39,7 +39,7 @@
     api_version: v1
     namespace: ingress-nginx
     kind: PersistentVolumeClaim
-    name: mariadb-pvc 
+    name: "{{ mariadb_volume }}"
     state: absent
   tags: delete_mariadb_volume
 
@@ -48,7 +48,7 @@
     api_version: v1
     namespace: ingress-nginx
     kind: Secret
-    name: mariadb-secret 
+    name: "{{ mariadb_secret }}" 
     state: absent
   tags: delete_mariadb_secret
 
@@ -57,6 +57,6 @@
     api_version: v1
     namespace: ingress-nginx
     kind: Secret 
-    name: certificate-secret
+    name: "{{ certificate_secret }}"
     state: absent
   tags: delete_certificate_secret

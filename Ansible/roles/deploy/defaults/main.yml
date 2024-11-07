@@ -8,21 +8,12 @@ nginx_svc: nginx-service
 wordpress_svc: wordpress-service
 mariadb_svc: mariadb-internal-service
 
-# mariadb_volume: /home/jenkins/workspace/Deployment/kubernetes/volume/mariadb-volume.yml
-# mariadb_configmap: /home/jenkins/workspace/Deployment/kubernetes/volume/mariadb-configmap.yml
-# mariadb_secret: /home/jenkins/workspace/Deployment/kubernetes/volume/mariadb-secret.yml
-# nginx_configmap: /home/jenkins/workspace/Deployment/kubernetes/volume/nginx-configmap.yml
-# wordpress_configmap: /home/jenkins/workspace/Deployment/kubernetes/volume/wordpress-configmap.yml
-# certificate_secret: /home/jenkins/workspace/Deployment/kubernetes/volume/certificate-secret.yml
-
-mariadb_volume: mariadb-pvc 
-mariadb_configmap: mariadb-configmap
-mariadb_secret: mariadb-secret 
-#nginx_configmap: 
-apache_configmap: apache-template 
-port_configmap: port-template 
-certificate_secret: certificate-secret
-
+mariadb_volume: /home/jenkins/workspace/Deployment/kubernetes/volume/mariadb-volume.yml
+mariadb_configmap: /home/jenkins/workspace/Deployment/kubernetes/volume/mariadb-configmap.yml
+mariadb_secret: /home/jenkins/workspace/Deployment/kubernetes/volume/mariadb-secret.yml
+nginx_configmap: /home/jenkins/workspace/Deployment/kubernetes/volume/nginx-configmap.yml
+wordpress_configmap: /home/jenkins/workspace/Deployment/kubernetes/volume/wordpress-configmap.yml
+certificate_secret: /home/jenkins/workspace/Deployment/kubernetes/volume/certificate-secret.yml
 
 custom_value: /home/jenkins/workspace/Deployment/kubernetes/helm/custom-values.yml
 
