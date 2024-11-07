@@ -14,8 +14,8 @@
     kind: ConfigMap
     state: absent
   loop:
-    - apache-template
-    - port-template 
+    - apache_template
+    - port_template 
   tags: delete_wordpress_configmap
 
 - name: Delete mariadb_configmap from namespace
@@ -31,7 +31,7 @@
   kubernetes.core.k8s:
     api_version: v1
     namespace: ingress-nginx
-    kind: PersistentVolume
+    kind: PersistentVolumeClaim
     name: mariadb-pvc 
     state: absent
   tags: delete_mariadb_volume
